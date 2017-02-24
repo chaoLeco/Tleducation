@@ -87,6 +87,7 @@
             break;
         case 106:
             //每周之星
+            [self performSegueWithIdentifier:@"pushYdxinViewControllerSegue" sender:@"4"];
             break;
         case 107:
             //全国大学

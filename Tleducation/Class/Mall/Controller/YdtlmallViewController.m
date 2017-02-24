@@ -37,7 +37,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    [self performSegueWithIdentifier:@"pushYdwebViewControllerSegue" sender:self.navigationItem.title];
+    [self performSegueWithIdentifier:@"pushYdmallViewControllerSegue" sender:self.navigationItem.title];
 }
 
 /*

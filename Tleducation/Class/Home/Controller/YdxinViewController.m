@@ -1,18 +1,18 @@
 //
-//  YdListViewController.m
+//  YdxinViewController.m
 //  Tleducation
 //
-//  Created by lecochao on 2017/2/23.
+//  Created by lecochao on 2017/2/24.
 //  Copyright © 2017年 yunduan. All rights reserved.
 //
 
-#import "YdListViewController.h"
-#import "YdhomeListTableViewCell.h"
-@interface YdListViewController ()
+#import "YdxinViewController.h"
+#import "YdxinTableViewCell.h"
+@interface YdxinViewController ()
 
 @end
 
-@implementation YdListViewController
+@implementation YdxinViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,29 +24,20 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
-}
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
     return 10;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 10;
-}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    YdhomeListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YdhomeListTableViewCell"];
+    YdxinTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YdxinTableViewCell"];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"pushYdListDetalisViewControllerSegue" sender:self.navigationItem.title];
+    [self performSegueWithIdentifier:@"pushYdwebViewControllerSegue" sender:self.navigationItem.title];
 }
 
 /*

@@ -9,6 +9,7 @@ pod 'AFNetworking', '~> 3.1.0'
 pod 'SDCycleScrollView', '~> 1.65'
 pod 'SDWebImage', '~> 3.7'
 pod 'UIActivityIndicator-for-SDWebImage', '~> 1.2'
+pod 'FDFullscreenPopGesture', '~> 1.1'
 
 end
 

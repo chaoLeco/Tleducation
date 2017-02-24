@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		C459BB2B76B4A29324E728B7 /* libPods-Tleducation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF98DA6C8177688EC28317A /* libPods-Tleducation.a */; };
+		DA35211A1E600DC8001FDBD0 /* YdListDetalisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3521191E600DC8001FDBD0 /* YdListDetalisViewController.m */; };
+		DA35211D1E600E36001FDBD0 /* YdListDeatlisTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35211C1E600E36001FDBD0 /* YdListDeatlisTableViewCell.m */; };
+		DA85B0991E5FC44200CA5EDB /* YdxinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA85B0981E5FC44100CA5EDB /* YdxinViewController.m */; };
+		DA85B09C1E5FC46500CA5EDB /* YdxinTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA85B09B1E5FC46500CA5EDB /* YdxinTableViewCell.m */; };
 		DAF246D11E5EB33F0092A39B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF246CF1E5EB33F0092A39B /* Main.storyboard */; };
 		DAF246D61E5EB33F0092A39B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF246D41E5EB33F0092A39B /* LaunchScreen.storyboard */; };
 		DAF246E11E5EB3400092A39B /* TleducationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF246E01E5EB3400092A39B /* TleducationTests.m */; };
@@ -64,6 +68,14 @@
 /* Begin PBXFileReference section */
 		7B395C463B79CA7646274D6E /* Pods-Tleducation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tleducation.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tleducation/Pods-Tleducation.release.xcconfig"; sourceTree = "<group>"; };
 		D18E1A2DA9619AE40882CC27 /* Pods-Tleducation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tleducation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tleducation/Pods-Tleducation.debug.xcconfig"; sourceTree = "<group>"; };
+		DA3521181E600DC8001FDBD0 /* YdListDetalisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdListDetalisViewController.h; sourceTree = "<group>"; };
+		DA3521191E600DC8001FDBD0 /* YdListDetalisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdListDetalisViewController.m; sourceTree = "<group>"; };
+		DA35211B1E600E36001FDBD0 /* YdListDeatlisTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdListDeatlisTableViewCell.h; sourceTree = "<group>"; };
+		DA35211C1E600E36001FDBD0 /* YdListDeatlisTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdListDeatlisTableViewCell.m; sourceTree = "<group>"; };
+		DA85B0971E5FC44100CA5EDB /* YdxinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdxinViewController.h; sourceTree = "<group>"; };
+		DA85B0981E5FC44100CA5EDB /* YdxinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdxinViewController.m; sourceTree = "<group>"; };
+		DA85B09A1E5FC46500CA5EDB /* YdxinTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdxinTableViewCell.h; sourceTree = "<group>"; };
+		DA85B09B1E5FC46500CA5EDB /* YdxinTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdxinTableViewCell.m; sourceTree = "<group>"; };
 		DAF246C31E5EB33F0092A39B /* Tleducation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tleducation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF246D01E5EB33F0092A39B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DAF246D51E5EB33F0092A39B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -300,8 +312,12 @@
 				DAF2472C1E5EB9590092A39B /* YdhomeViewController.m */,
 				DAF247671E5ED5870092A39B /* YdListViewController.h */,
 				DAF247681E5ED5870092A39B /* YdListViewController.m */,
+				DA3521181E600DC8001FDBD0 /* YdListDetalisViewController.h */,
+				DA3521191E600DC8001FDBD0 /* YdListDetalisViewController.m */,
 				DAF2476B1E5EDA780092A39B /* YdwebViewController.h */,
 				DAF2476C1E5EDA780092A39B /* YdwebViewController.m */,
+				DA85B0971E5FC44100CA5EDB /* YdxinViewController.h */,
+				DA85B0981E5FC44100CA5EDB /* YdxinViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -320,6 +336,10 @@
 				DAF2475F1E5ECC590092A39B /* YdHomeTableViewCell.m */,
 				DAF247641E5ED5690092A39B /* YdhomeListTableViewCell.h */,
 				DAF247651E5ED5690092A39B /* YdhomeListTableViewCell.m */,
+				DA35211B1E600E36001FDBD0 /* YdListDeatlisTableViewCell.h */,
+				DA35211C1E600E36001FDBD0 /* YdListDeatlisTableViewCell.m */,
+				DA85B09A1E5FC46500CA5EDB /* YdxinTableViewCell.h */,
+				DA85B09B1E5FC46500CA5EDB /* YdxinTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -672,16 +692,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAF2472D1E5EB9590092A39B /* YdhomeViewController.m in Sources */,
+				DA85B09C1E5FC46500CA5EDB /* YdxinTableViewCell.m in Sources */,
 				DAF247361E5EB9D00092A39B /* YdmeViewController.m in Sources */,
 				DAF247171E5EB6DB0092A39B /* YdBasisViewController.m in Sources */,
 				DAF247141E5EB6DB0092A39B /* main.m in Sources */,
 				DAF247601E5ECC590092A39B /* YdHomeTableViewCell.m in Sources */,
+				DA35211A1E600DC8001FDBD0 /* YdListDetalisViewController.m in Sources */,
 				DAF247301E5EB96F0092A39B /* YdtlmallViewController.m in Sources */,
 				DAF2476D1E5EDA780092A39B /* YdwebViewController.m in Sources */,
 				DAF2473C1E5EB9DE0092A39B /* YdtlbbsViewController.m in Sources */,
 				DAF247691E5ED5870092A39B /* YdListViewController.m in Sources */,
+				DA85B0991E5FC44200CA5EDB /* YdxinViewController.m in Sources */,
 				DAF247701E5EE2CB0092A39B /* YdtlmallTableViewCell.m in Sources */,
 				DAF247661E5ED5690092A39B /* YdhomeListTableViewCell.m in Sources */,
+				DA35211D1E600E36001FDBD0 /* YdListDeatlisTableViewCell.m in Sources */,
 				DAF247181E5EB6DB0092A39B /* YdMianViewController.m in Sources */,
 				DAF247161E5EB6DB0092A39B /* AppDelegate.m in Sources */,
 			);
@@ -836,6 +860,7 @@
 				DEVELOPMENT_TEAM = 4TNUKKVG8N;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Tleducation/Config/YdHeader.h";
 				INFOPLIST_FILE = Tleducation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yunduan.Tleducation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -850,6 +875,7 @@
 				DEVELOPMENT_TEAM = 4TNUKKVG8N;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Tleducation/Config/YdHeader.h";
 				INFOPLIST_FILE = Tleducation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yunduan.Tleducation;
 				PRODUCT_NAME = "$(TARGET_NAME)";

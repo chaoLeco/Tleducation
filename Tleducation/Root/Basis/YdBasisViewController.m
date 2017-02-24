@@ -8,7 +8,7 @@
 
 #import "YdBasisViewController.h"
 
-@interface YdBasisViewController ()<WKUIDelegate>
+@interface YdBasisViewController ()<WKUIDelegate,WKScriptMessageHandler>
 
 @end
 
@@ -19,17 +19,56 @@
     // Do any additional setup after loading the view.
 }
 
-- (WKWebView *)wkWebView
-{
+//- (WKWebView *)wkWebView
+//{
+//    if (!_wkWebView) {
+//        _wkWebView = [[WKWebView alloc]initWithFrame:self.view.bounds];
+//        _wkWebView.allowsBackForwardNavigationGestures = YES;
+//        _wkWebView.UIDelegate = self;
+//        [self.view addSubview:_wkWebView];
+//        [self.view sendSubviewToBack:_wkWebView];
+//    }
+//    return _wkWebView;
+//}
+
+- (WKWebView *)wkWebView{
     if (!_wkWebView) {
-        _wkWebView = [[WKWebView alloc]initWithFrame:self.view.bounds];
-        _wkWebView.allowsBackForwardNavigationGestures = YES;
+        //设置网页的配置文件
+        WKWebViewConfiguration * Configuration = [[WKWebViewConfiguration alloc]init];
+        //允许视频播放
+        Configuration.allowsAirPlayForMediaPlayback = YES;
+        // 允许在线播放
+        Configuration.allowsInlineMediaPlayback = YES;
+        // 允许可以与网页交互，选择视图
+        Configuration.selectionGranularity = YES;
+        // web内容处理池
+        Configuration.processPool = [[WKProcessPool alloc] init];
+        //自定义配置,一般用于 js调用oc方法(OC拦截URL中的数据做自定义操作)
+        WKUserContentController * UserContentController = [[WKUserContentController alloc]init];
+        // 添加消息处理，注意：self指代的对象需要遵守WKScriptMessageHandler协议，结束时需要移除
+        [UserContentController addScriptMessageHandler:self name:@"WXPay"];
+        // 是否支持记忆读取
+        Configuration.suppressesIncrementalRendering = YES;
+        // 允许用户更改网页的设置
+        Configuration.userContentController = UserContentController;
+        _wkWebView = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:Configuration];
+        _wkWebView.backgroundColor = [UIColor colorWithRed:240.0/255 green:240.0/255 blue:240.0/255 alpha:1.0];
+        // 设置代理
+//        _wkWebView.navigationDelegate = self;
         _wkWebView.UIDelegate = self;
+        //kvo 添加进度监控
+//        [_wkWebView addObserver:self forKeyPath:NSStringFromSelector(@selector(estimatedProgress)) options:0 context:WkwebBrowserContext];
+        //开启手势触摸
+        _wkWebView.allowsBackForwardNavigationGestures = YES;
+        // 设置 可以前进 和 后退
+        //适应你设定的尺寸
+        [_wkWebView sizeToFit];
         [self.view addSubview:_wkWebView];
         [self.view sendSubviewToBack:_wkWebView];
     }
     return _wkWebView;
 }
+
 
 - (void)webLoadRequestUrl:(NSString *)url
 {
@@ -39,6 +78,21 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark ================ WKScriptMessageHandler ================
+
+//拦截执行网页中的JS方法
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
+    
+    //服务器固定格式写法 window.webkit.messageHandlers.名字.postMessage(内容);
+    //客户端写法 message.name isEqualToString:@"名字"]
+    if ([message.name isEqualToString:@"WXPay"]) {
+        NSLog(@"%@", message.body);
+        //调用微信支付方法
+        //        [self WXPayWithParam:message.body];
+    }
+    NSLog(@"%@", message.body);
 }
 
 #pragma mark - WKUIDelegate -
