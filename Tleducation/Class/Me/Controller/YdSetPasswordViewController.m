@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self getMsgCode:nil];
+    [self getMsgCode:[self.view viewWithTag:200]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,7 +30,7 @@
 }
 
 - (IBAction)getMsgCode:(UIButton *)sender {
-    [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_get_codeMsg Params:@{@"usertel":@"userPhone"} success:^(id json) {
+    [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_get_codeMsg Params:@{@"usertel":_userPhone} success:^(id json) {
         if ([self status:json]) {
             NSLog(@"data");
             _seconds = 60;
@@ -51,19 +51,25 @@
     [self.view endEditing:YES];
     if ([_txtpassword.text isMatchingRegularEpressionByPattern:RE_SecretLeast(6,15)]) {
         if (_txtCodeMsg.text.length>2) {
-            [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_Login_codeMsg
-                                          Params:@{@"usertel":@"",
-                                                   @"smscode":@""}
-                                         success:^(id json) {
-                                             if ([self status:json]) {
-                                                 
-                                                 [self showHint:@"登陆成功"];
-                                                 [self.navigationController popViewControllerAnimated:YES];
+            
+            NSString *userid= k_GET_OBJECT(Yd_user);
+            if (userid) {
+                [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_User_editpassword
+                                              Params:@{@"userid":userid,
+                                                       @"password":_txtpassword.text}
+                                             success:^(id json) {
+                                                 if ([self status:json]) {
+                                                     
+                                                     [self showHint:@"密码设置成功"];
+                                                     [self.navigationController popViewControllerAnimated:YES];
+                                                 }
                                              }
-                                         }
-                                            fail:^(NSError *error) {
-                                                [self showHint:@"登录失败"];
-                                            }];
+                                                fail:^(NSError *error) {
+                                                    [self showHint:@"提交失败"];
+                                                }];
+            }else
+                [self isLogin];
+            
         }else
             [self showHint:@"请正确输入验证码"];
     }else

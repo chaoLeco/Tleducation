@@ -65,10 +65,14 @@
                 [_datas addObject:model];
             }
             [_tableView reloadData];
+            [_tableView.mj_header endRefreshing];
+            [_tableView.mj_footer endRefreshing];
         }
     } fail:^(NSError *error) {
         [self hideHud];
         [self showHint:@"网络错误"];
+        [_tableView.mj_header endRefreshing];
+        [_tableView.mj_footer endRefreshing];
     }];
     
 }

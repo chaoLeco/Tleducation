@@ -30,6 +30,12 @@
 #define Yd_Url_User_CodePic Yd_Url_base@"validate"
 //获取userInfo
 #define Yd_Url_User_info Yd_Url_base@"user"
+//上传头像
+#define Yd_Url_User_headimg Yd_Url_base@"up/headimg"
+//修改密码
+#define Yd_Url_User_editpassword Yd_Url_base@"user/edit/password"
+//修改昵称
+#define Yd_Url_User_editnickname Yd_Url_base@"user/edit/nickname"
 //密码登录
 #define Yd_Url_Login_password Yd_Url_base@"pass_signin"
 //codeMsg登录

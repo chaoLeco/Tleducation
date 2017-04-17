@@ -51,8 +51,8 @@
                                                  [self showHint:@"登陆成功"];
                                                  [kNotificationCenter postNotificationName:Yd_Notification_login object:nil];
                                                  [self dismissAction:nil];
-                                             }else
-                                                 [self showHint:@"登录失败"];
+                                             }
+//                                                 [self showHint:@"登录1"];
                                           }
                                             fail:^(NSError *error) {
                                               [self showHint:@"登录失败"];

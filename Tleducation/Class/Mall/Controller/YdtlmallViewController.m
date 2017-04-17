@@ -127,14 +127,19 @@
         if ([self status:json]) {
             _datas = [NSMutableArray array];
             NSArray *arry = json[@"data"];
+            if (![arry isKindOfClass:[NSArray class]]) return;
             for (NSDictionary *dic in arry) {
                 NSError *error;
                 YdtlmallModel *model = [[YdtlmallModel alloc]initWithDictionary:dic error:&error];
                 [_datas addObject:model];
             }
             [_tableView reloadData];
+            [_tableView.mj_header endRefreshing];
+            [_tableView.mj_footer endRefreshing];
         }
     } fail:^(NSError *error) {
+        [_tableView.mj_header endRefreshing];
+        [_tableView.mj_footer endRefreshing];
         [self hideHud];
         [self showHint:@"网络错误"];
     }];
@@ -149,7 +154,7 @@
     [btn2 setSelected:NO];
     [btn2 setHighlighted:YES];
     _lblClass.text = @"全部";
-    
+    _params = nil;
 }
 
 

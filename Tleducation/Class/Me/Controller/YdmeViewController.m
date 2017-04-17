@@ -81,6 +81,7 @@
     YdmeTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YdmeTableCell"];
     cell.title.text = self.titles[indexPath.row];
     cell.icon.image = [UIImage imageNamed:self.icons[indexPath.row]];
+    cell.subTitle.text = self.subTitles[indexPath.row];
     return cell;
 }
 
@@ -107,8 +108,9 @@
                 NSError *error;
                 _userInfo = [[YdUser alloc] initWithDictionary:json[@"data"] error:&error];
                 if (!error) {
-                    [_headPic sd_setImageWithURL:[NSURL URLWithString:_userInfo.headimg] placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"head_icon_%d.png",arc4random()%3 +1]]];
-                    _lblName.text = _userInfo.username?_userInfo.username:_userInfo.nickname;
+                    NSString *url  = [Yd_Url_base stringByAppendingString:_userInfo.headimg];
+                    [_headPic sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"head_icon_%d.png",arc4random()%3 +1]]];
+                    _lblName.text = _userInfo.nickname?_userInfo.nickname:_userInfo.username;
                     if ([_userInfo.vip intValue]==1) {
                         [_tableView viewWithTag:100].hidden = NO;//会员
                     }else

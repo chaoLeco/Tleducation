@@ -7,6 +7,8 @@
 //
 
 #import "YdUserInfoViewController.h"
+#import "YdSetPasswordViewController.h"
+
 #import "YdUserInfoTableCell.h"
 @interface YdUserInfoViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -23,7 +25,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self getDataSource];
 }
 
 - (NSArray *)titles
@@ -87,10 +88,14 @@
             if (_portraitImg) {
                 cell.subImage.image = _portraitImg;
             }else
-            [cell.subImage sd_setImageWithURL:[NSURL URLWithString:_info.headimg] placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"head_icon_%d.png",arc4random()%3 +1]]];
+            {
+               NSString *url  = [Yd_Url_base stringByAppendingString:_info.headimg];
+                [cell.subImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"head_icon_%d.png",arc4random()%3 +1]]];
+            }
+
             break;
         case 1:
-            cell.lblSubtitle.text = _info.username?_info.username:_info.nickname;
+            cell.lblSubtitle.text = _info.nickname?_info.nickname:_info.username;
             break;
         case 2:
             cell.lblSubtitle.text = _info.usertel;
@@ -195,10 +200,11 @@
     if (userid) {
         [self showHUDWithHint:nil];
         NSData *data = UIImageJPEGRepresentation(_portraitImg, 0.8);
-        [XCNetworking XC_Post_UploadWithUrl:@"" Params:@{@"userid":userid} Data_arr:@[@{@"picKey":@"headerphoto",@"picData":data}] success:^(id responseObject) {
+        [XCNetworking XC_Post_UploadWithUrl:Yd_Url_User_headimg Params:@{@"userid":userid} Data_arr:@[@{@"picKey":@"imgFile",@"picData":data}] success:^(id responseObject) {
             if ([self status:responseObject]) {
                 [self showHint:@"新头像已保存"];
                 [kNotificationCenter postNotificationName:Yd_Notification_login object:nil];
+                [self getDataSource];
             }
             [self hideHud];
         } fail:^(NSError *error) {
@@ -216,11 +222,13 @@
     NSString *userid= k_GET_OBJECT(Yd_user);
     if (userid) {
         [self showHUDWithHint:nil];
-        [XCNetworking XC_Post_UploadWithUrl:@"" Params:@{@"userid":userid,@"":name} Data_arr:nil success:^(id responseObject) {
+        [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_User_editnickname Params:@{@"userid":userid,@"nickname":name} success:^(id responseObject) {
             if ([self status:responseObject]) {
-                [self showHint:@"新头像已保存"];
+                [self showHint:@"昵称已保存"];
                 [kNotificationCenter postNotificationName:Yd_Notification_login object:nil];
+                [self getDataSource];
             }
+            
             [self hideHud];
         } fail:^(NSError *error) {
             [self hideHud];
@@ -232,14 +240,19 @@
     }
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    UIViewController *vc = [segue destinationViewController];
+    if ([vc isKindOfClass:[YdSetPasswordViewController class]]) {
+        YdSetPasswordViewController *pwvc = [segue destinationViewController];
+        pwvc.userPhone = _info.usertel;
+    }
 }
-*/
+
 
 @end
