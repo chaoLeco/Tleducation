@@ -14,4 +14,17 @@
 #ifdef __OBJC__
 #import "YdApi.h"
 #import "YdDefine.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "XCNetworking.h"
+#import "XCTableView.h"
+#import "UIViewController+HUD.h"
+#import "NSObject+WGObject.h"
+#import "NSString+WGString.h"
+#import "NSTimer+WGTimer.h"
+
+//#import "UIImageView+WebCache.h"
+#import "UIImageView+UIActivityIndicatorForSDWebImage.h"
+#import "MJRefresh.h"
+#import "WGAlertView.h"
 #endif

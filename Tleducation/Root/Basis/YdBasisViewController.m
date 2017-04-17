@@ -8,7 +8,7 @@
 
 #import "YdBasisViewController.h"
 
-@interface YdBasisViewController ()<WKUIDelegate,WKScriptMessageHandler>
+@interface YdBasisViewController ()<WKUIDelegate,WKNavigationDelegate>
 
 @end
 
@@ -19,80 +19,94 @@
     // Do any additional setup after loading the view.
 }
 
-//- (WKWebView *)wkWebView
-//{
-//    if (!_wkWebView) {
-//        _wkWebView = [[WKWebView alloc]initWithFrame:self.view.bounds];
-//        _wkWebView.allowsBackForwardNavigationGestures = YES;
-//        _wkWebView.UIDelegate = self;
-//        [self.view addSubview:_wkWebView];
-//        [self.view sendSubviewToBack:_wkWebView];
-//    }
-//    return _wkWebView;
-//}
-
-- (WKWebView *)wkWebView{
+- (WKWebView *)wkWebView
+{
     if (!_wkWebView) {
-        //设置网页的配置文件
-        WKWebViewConfiguration * Configuration = [[WKWebViewConfiguration alloc]init];
-        //允许视频播放
-        Configuration.allowsAirPlayForMediaPlayback = YES;
-        // 允许在线播放
-        Configuration.allowsInlineMediaPlayback = YES;
-        // 允许可以与网页交互，选择视图
-        Configuration.selectionGranularity = YES;
-        // web内容处理池
-        Configuration.processPool = [[WKProcessPool alloc] init];
-        //自定义配置,一般用于 js调用oc方法(OC拦截URL中的数据做自定义操作)
-        WKUserContentController * UserContentController = [[WKUserContentController alloc]init];
-        // 添加消息处理，注意：self指代的对象需要遵守WKScriptMessageHandler协议，结束时需要移除
-        [UserContentController addScriptMessageHandler:self name:@"WXPay"];
-        // 是否支持记忆读取
-        Configuration.suppressesIncrementalRendering = YES;
-        // 允许用户更改网页的设置
-        Configuration.userContentController = UserContentController;
-        _wkWebView = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:Configuration];
-        _wkWebView.backgroundColor = [UIColor colorWithRed:240.0/255 green:240.0/255 blue:240.0/255 alpha:1.0];
-        // 设置代理
-//        _wkWebView.navigationDelegate = self;
-        _wkWebView.UIDelegate = self;
-        //kvo 添加进度监控
-//        [_wkWebView addObserver:self forKeyPath:NSStringFromSelector(@selector(estimatedProgress)) options:0 context:WkwebBrowserContext];
-        //开启手势触摸
+        _wkWebView = [[WKWebView alloc]initWithFrame:self.view.bounds];
         _wkWebView.allowsBackForwardNavigationGestures = YES;
-        // 设置 可以前进 和 后退
-        //适应你设定的尺寸
-        [_wkWebView sizeToFit];
+        _wkWebView.UIDelegate = self;
+        _wkWebView.navigationDelegate = self;
         [self.view addSubview:_wkWebView];
         [self.view sendSubviewToBack:_wkWebView];
     }
     return _wkWebView;
 }
 
-
 - (void)webLoadRequestUrl:(NSString *)url
 {
     [self.wkWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
 }
 
+- (void)webLoadName:(NSString *)fileName
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:@"html"];
+    NSURL *fileURL = [NSURL fileURLWithPath:path];
+    [self.wkWebView loadRequest:[NSURLRequest requestWithURL:fileURL]];
+}
+
+- (BOOL)status:(id)json
+{
+    if (json) {
+        if ([json[@"status"] intValue] ==1) {
+            return YES;
+        }else{
+            [self showHint:json[@"msg"]];
+            return NO;
+        }
+    }else{
+        [self showHint:@"数据获取失败！"];
+        return NO;
+    }
+}
+
+- (BOOL)isLogin
+{
+    NSString *user = k_GET_OBJECT(Yd_user);
+    if (user) {
+        return YES;
+    }
+    
+    WGAlertView *alter = [[WGAlertView alloc]initWithTitle:@"未登录" message:@"是否重新登录" block:^(NSInteger buttonIndex, WGAlertView *alert_) {
+        if (buttonIndex ==0) {
+            UIViewController *lodinVc = [self.storyboard instantiateViewControllerWithIdentifier:@"navigationLoginVc"];
+            [self presentViewController:lodinVc animated:YES completion:nil];
+           [kNotificationCenter postNotificationName:Yd_Notification_logout object:nil];
+        }
+    } cancelButtonTitle:@"取消" otherButtonTitles:@"是", nil];
+    [alter show];
+    return NO;
+}
+
+- (void)tableRefresh:(UITableView *)_tableView
+{
+    _nowPage = 1;
+    _nowPage = 1;
+    [_tableView setTableFooterView:[UIView new]];
+    _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [_tableView.mj_footer endRefreshing];
+        });
+        if (++_nowPage >_totalPage) {
+            _nowPage = _totalPage;
+            [_tableView.mj_footer endRefreshing];
+            [self showHint:@"没有更多了"];
+        }else
+            [self getDataSource];
+    }];
+    _tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+        _nowPage = 1;
+        [self getDataSource];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [_tableView.mj_header endRefreshing];
+        });
+    }];
+}
+
+- (void)getDataSource{}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark ================ WKScriptMessageHandler ================
-
-//拦截执行网页中的JS方法
-- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
-    
-    //服务器固定格式写法 window.webkit.messageHandlers.名字.postMessage(内容);
-    //客户端写法 message.name isEqualToString:@"名字"]
-    if ([message.name isEqualToString:@"WXPay"]) {
-        NSLog(@"%@", message.body);
-        //调用微信支付方法
-        //        [self WXPayWithParam:message.body];
-    }
-    NSLog(@"%@", message.body);
 }
 
 #pragma mark - WKUIDelegate -
@@ -112,20 +126,34 @@
 // 调用JS的alert()方法
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler
 {
-    
+    NSLog(@"____%@",message);
+//    completionHandler();
 }
 
 // 调用JS的confirm()方法
 
 - (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL result))completionHandler
 {
-    
+    NSLog(@"confirm____%@",message);
 }
 
 // 调用JS的prompt()方法
 - (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(nullable NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * _Nullable result))completionHandler
 {
     
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation
+{
+    NSLog(@"Finish");
+    NSString *js = [NSString stringWithFormat:@"getNewsId(%@)",self._id];
+    [webView evaluateJavaScript:js completionHandler:nil];
+}
+
+
+- (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error
+{
+    NSLog(@"Fail");
 }
 /*
 #pragma mark - Navigation

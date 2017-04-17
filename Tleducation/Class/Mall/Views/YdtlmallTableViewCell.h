@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YdtlmallModel.h"
 
 @interface YdtlmallTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *img;
@@ -14,4 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblprice;
 @property (weak, nonatomic) IBOutlet UILabel *lblprice_member;
 @property (weak, nonatomic) IBOutlet UILabel *lblpnum;
+
+- (void)showValue:(YdtlmallModel*)value;
 @end

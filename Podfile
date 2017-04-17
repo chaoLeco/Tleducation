@@ -2,7 +2,7 @@
 platform:ios,'8.0'
 
 target 'Tleducation' do
-pod 'Mantle', '~> 2.1.0'
+pod 'JSONModel', '~> 1.7.0'
 pod 'MBProgressHUD', '~> 1.0.0'
 pod 'MJRefresh', '~> 3.1.12'
 pod 'AFNetworking', '~> 3.1.0'

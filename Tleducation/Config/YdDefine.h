@@ -12,6 +12,10 @@
 
 #endif /* YdDefine_h */
 
+
+#define Yd_Notification_logout @"user_logout"
+#define Yd_Notification_login @"user_login"
+#define Yd_user @"userInfo"
 //*
 //字符串是否为空
 

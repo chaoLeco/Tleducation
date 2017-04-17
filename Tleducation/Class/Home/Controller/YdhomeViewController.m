@@ -9,10 +9,13 @@
 #import "YdhomeViewController.h"
 #import "YdHomeTableViewCell.h"
 #import "SDCycleScrollView.h"
+#import "YdhomeModel.h"
+
 @interface YdhomeViewController ()<SDCycleScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *banner;
 
+@property (strong,nonatomic) NSMutableArray *datas;
 @property (strong,nonatomic) SDCycleScrollView *cycleScrollView;
 @end
 
@@ -22,6 +25,8 @@
     [super viewDidLoad];
     self.cycleScrollView.localizationImageNamesGroup = @[@"ad_1.jpg",@"ad_2.jpg",@"ad_3.jpg",@"ad_4.jpg"];
     [_banner addSubview:_cycleScrollView];
+    [self tableRefresh:_tableView];
+    [self getDataSource];
 }
 
 - (SDCycleScrollView *)cycleScrollView
@@ -32,20 +37,22 @@
     return _cycleScrollView;
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return _datas.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     YdHomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YdHomeTableViewCell"];
+    [cell showValue:_datas[indexPath.row]];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
@@ -97,7 +104,27 @@
     }
 }
 
+#pragma mark - data - 
 
+-(void)getDataSource
+{
+    [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_home_top Params:nil success:^(id json) {
+        if ([self status:json]) {
+            _datas = [NSMutableArray new];
+            NSArray *ary = json[@"data"];
+            for (NSDictionary *dic in ary) {
+                NSError *error;
+                YdhomeModel *model = [[YdhomeModel alloc]initWithDictionary:dic error:&error];
+                if (!error) {
+                    [_datas addObject:model];
+                }
+            }
+            [_tableView reloadData];
+        }
+    } fail:^(NSError *error) {
+        [self showHint:@"网络错误"];
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
