@@ -9,6 +9,7 @@
 #import "YdmeViewController.h"
 #import "YdUserInfoViewController.h"
 #import "YdmeTableCell.h"
+#import "YdVipViewController.h"
 #import "YdUser.h"
 
 @interface YdmeViewController ()
@@ -49,7 +50,7 @@
 -(NSArray *)titles
 {
     if (!_titles) {
-        _titles = @[@"个人信息",@"会员中心",@"我的订单"];
+        _titles = @[@"个人信息",@"会员中心",@"我的订单",@"关于我们"];
     }
     return _titles;
 }
@@ -57,7 +58,7 @@
 -(NSArray *)icons
 {
     if (!_icons) {
-        _icons = @[@"tlme",@"tl_Vip",@"tldingdan"];
+        _icons = @[@"tlme",@"tl_Vip",@"tldingdan",@"tlaboutme"];
     }
     return _icons;
 }
@@ -65,7 +66,7 @@
 - (NSMutableArray *)subTitles
 {
     if (!_subTitles) {
-        _subTitles = [NSMutableArray arrayWithObjects:@"",@"",@"", nil];
+        _subTitles = [NSMutableArray arrayWithObjects:@"",@"",@"",@"" ,nil];
     }
     return _subTitles;
 }
@@ -87,7 +88,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"pushYdUserInfoViewController" sender:nil];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    switch (indexPath.row) {
+        case 0:
+            [self performSegueWithIdentifier:@"pushYdUserInfoViewController" sender:nil];
+            break;
+        case 1:
+            [self performSegueWithIdentifier:@"pushYdVipViewController" sender:nil];
+            break;
+        case 2:
+            [self performSegueWithIdentifier:@"pushYdUserOrderViewController" sender:nil];
+            break;
+        case 3:
+            [self performSegueWithIdentifier:@"pushTrAboutmeViewController" sender:nil];
+            break;
+        default:
+            break;
+    }
+    
 }
 
 - (void)logout
@@ -149,6 +167,11 @@
         YdUserInfoViewController *uservc = (YdUserInfoViewController *)vc;
         uservc.info = _userInfo;
     }
+    if ([vc isKindOfClass:[YdVipViewController class]]) {
+        YdVipViewController *vipvc = (YdVipViewController *)vc;
+        vipvc.info = _userInfo;
+    }
+    
 }
 
 

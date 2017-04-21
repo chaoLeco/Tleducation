@@ -16,6 +16,7 @@ PODS:
     - AFNetworking/NSURLSession
   - FDFullscreenPopGesture (1.1)
   - JSONModel (1.7.0)
+  - KZSmallVideoRecorder (1.0.5)
   - MBProgressHUD (1.0.0)
   - MJRefresh (3.1.12)
   - SDCycleScrollView (1.65):
@@ -30,6 +31,7 @@ DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
   - FDFullscreenPopGesture (~> 1.1)
   - JSONModel (~> 1.7.0)
+  - KZSmallVideoRecorder (~> 1.0.5)
   - MBProgressHUD (~> 1.0.0)
   - MJRefresh (~> 3.1.12)
   - SDCycleScrollView (~> 1.65)
@@ -40,12 +42,13 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
+  KZSmallVideoRecorder: 9ee88511f039f2c5316a5f01665f87b4b666508d
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
 
-PODFILE CHECKSUM: dc3ad15422abcc66e6af03c038851e9955db8ec0
+PODFILE CHECKSUM: 853f0a002f3bc913e72b7d6cb7de1fdd6318541a
 
 COCOAPODS: 1.2.0

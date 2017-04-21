@@ -26,6 +26,8 @@
 #define Yd_Url_home_top Yd_Url_base@"top"
 //商品列表
 #define Yd_Url_mall_product Yd_Url_base@"product"
+//提交订单
+#define Yd_Url_mall_submit Yd_Url_base@"order/submit"
 // 获取验证码
 #define Yd_Url_User_CodePic Yd_Url_base@"validate"
 //获取userInfo
@@ -36,6 +38,10 @@
 #define Yd_Url_User_editpassword Yd_Url_base@"user/edit/password"
 //修改昵称
 #define Yd_Url_User_editnickname Yd_Url_base@"user/edit/nickname"
+//订单列表
+#define Yd_Url_User_orderlist Yd_Url_base@"user/orderlist"
+//订单详情
+#define Yd_Url_User_order Yd_Url_base@"order"
 //密码登录
 #define Yd_Url_Login_password Yd_Url_base@"pass_signin"
 //codeMsg登录

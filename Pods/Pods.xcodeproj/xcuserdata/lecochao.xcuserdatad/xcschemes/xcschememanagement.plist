@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>KZSmallVideoRecorder.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,17 +57,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>011627D66EDA60C9FC082E9DBAD02882</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>04CF549EBEEE7BC87AEAE35397184D94</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>37B96514EAF994796D1B27DE84BC8B4F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4CFE9B4A5D26A5B8E9E29F53A5F32858</key>
+		<key>452ACB8EAA6632B0F60A130DBB1C9EEE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,17 +82,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8E77F81E9A07B4593B08AD5C60639C33</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>9E033EDB5EC0819481B0546434FA577B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EB842ABDBD7D71D32B9DFE9B439AD0FD</key>
+		<key>AAD389303EC79B77BD75C2B4B60BF9A2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C8F295A142FFE3E0F1A270893964D1F4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DCFFCDD82E19EC1B4E393E225EE60E3B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

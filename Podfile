@@ -10,6 +10,6 @@ pod 'SDCycleScrollView', '~> 1.65'
 pod 'SDWebImage', '~> 3.7'
 pod 'UIActivityIndicator-for-SDWebImage', '~> 1.2'
 pod 'FDFullscreenPopGesture', '~> 1.1'
-
+pod 'KZSmallVideoRecorder', '~> 1.0.5'
 end
 

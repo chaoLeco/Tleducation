@@ -27,6 +27,8 @@
     [_banner addSubview:_cycleScrollView];
     [self tableRefresh:_tableView];
     [self getDataSource];
+//    文化培训、才艺培训、
+//  关于我们
 }
 
 - (SDCycleScrollView *)cycleScrollView
@@ -91,6 +93,7 @@
             break;
         case 105:
             //商城
+            self.tabBarController.selectedIndex = 1;
             break;
         case 106:
             //每周之星
