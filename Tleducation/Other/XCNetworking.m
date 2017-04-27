@@ -205,7 +205,14 @@
 //        BOOL exportResult = [asset exportDataToURL:url error:&theErro];
 //        NBLog(@"exportResult=%@", exportResult?@"YES":@"NO");
         NSData *videoData = [NSData dataWithContentsOfURL:url];
-        [formData appendPartWithFileData:videoData name:@"file" fileName:@"video1.mp4" mimeType:@"video/quicktime"];
+        [formData appendPartWithFileData:videoData name:@"file[]" fileName:@"video1.mov" mimeType:@"video/quicktime"];
+        NSString *path = [videoPath stringByReplacingOccurrencesOfString:@"file://" withString: @""];
+        NSString *thumPath = [path stringByReplacingOccurrencesOfString:@"MOV" withString: @"JPG"];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        if ([fileManager fileExistsAtPath:thumPath]) {
+            NSData *data = [NSData dataWithContentsOfFile:thumPath];
+            [formData appendPartWithFileData:data name:@"file[]" fileName:@"video1_1.jpg" mimeType:@"image/png"];
+        }
         
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -275,8 +282,8 @@
                                                                          destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
                                             
                                                                              NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-                                                                             NSString *file = [NSString stringWithFormat:@"voideCaches/%@",fileName];
-                                                                             return [documentsDirectoryURL URLByAppendingPathComponent:file];
+//                                                                             NSString *file = [NSString stringWithFormat:@"voideCaches/%@",fileName];
+                                                                             return [documentsDirectoryURL URLByAppendingPathComponent:fileName];
 
                                                                          }
                                                                    completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {

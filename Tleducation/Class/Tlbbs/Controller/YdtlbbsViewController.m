@@ -12,6 +12,8 @@
 #import "NSString+Emoji.h"
 #import "STInputBar.h"
 #import "ZLPhoto.h"
+#import "YdDynamic.h"
+
 NSString *const dynamicCellID_normal = @"LsDynamicTableViewCell_Normal";
 NSString *const dynamicCellID_Picture = @"LsDynamicTableViewCell_Picture";
 NSString *const dynamicCellID_Pictures = @"LsDynamicTableViewCell_Pictures";
@@ -31,6 +33,14 @@ NSString *const dynamicCellID_Video = @"LsDynamicTableViewCell_Video";
     _tableView.rowHeight = UITableViewAutomaticDimension;
     _tableView.estimatedRowHeight = 200.f;
     _tableView.tableFooterView = [UIView new];
+    [self tableRefresh:_tableView];
+    [self.view addSubview:self.inputBar];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self getDataSource];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,7 +62,7 @@ NSString *const dynamicCellID_Video = @"LsDynamicTableViewCell_Video";
             weakself.inputBar.placeHolder = @"发布评论";
             weakself.inputBar.hidden = YES;
             NSLog(@"发送_%f_%@",CGRectGetHeight(weakself.inputBar.bounds),text);
-//            [weakself postCommentInfo:text];
+            [weakself postCommentInfo:text];
             [weakself.inputBar resignFirstResponder];
         }];
         [_inputBar setInputBarSizeChangedHandle:^{}];
@@ -64,97 +74,89 @@ NSString *const dynamicCellID_Video = @"LsDynamicTableViewCell_Video";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return _dataSource.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    LsDynamicModel *dy = _dataSource[indexPath.row];
-    
-    NSString *identifier = [self cellIdentifier:indexPath.row%5];
+    YdDynamic *dy = _dataSource[indexPath.row];
+    NSString *identifier = [self cellIdentifierForModel:dy];
     identifier = [identifier isEqualToString:dynamicCellID_Pictures_6]?dynamicCellID_Pictures:identifier;
     LsDynamicTableViewCell_Normal *cell= [tableView dequeueReusableCellWithIdentifier:identifier];
-//    [cell setValueData:dy];
+    [cell setValueData:dy];
     cell.block =^(LsDynamicClickStyle style , id model ,id sender){
-//        [self tableCellBlock:style Data:model ID:sender];
+        if (style==LsDynamicClickStyleLeftBtn) {
+            [self tableCellBlock:style Data:model ID:indexPath];
+        }else
+        [self tableCellBlock:style Data:model ID:sender];
     };
     return cell;
 }
 
-- (NSString *)cellIdentifier:(NSInteger)n
+- (NSString *)cellIdentifierForModel:(YdDynamic *)dy
 {
-    NSArray *array = @[dynamicCellID_normal,dynamicCellID_Picture,dynamicCellID_Pictures,dynamicCellID_Pictures_6,dynamicCellID_Video];
-    return array[n];
+    if (dy.img.length>2) {
+        NSArray *array = [dy.img componentsSeparatedByString:@","];
+        if (array.count==1) {
+            return dynamicCellID_Picture;
+        }else if (array.count==6) {
+            return dynamicCellID_Pictures_6;
+        }else if (array.count<=3) {
+            return dynamicCellID_Pictures;
+        }else
+            return dynamicCellID_Pictures_6;
+    }else
+    if (dy.video.length>1) {
+        return dynamicCellID_Video;
+    }else
+        return dynamicCellID_normal;
 }
-
-//- (NSString *)cellIdentifierForModel:(LsDynamicModel *)dy
-//{
-//    if ([dy.mb_format isEqualToString:@"1"]) {
-//        return dynamicCellID_normal;
-//    }
-//    if ([dy.mb_format isEqualToString:@"2"]) {
-//        NSArray *array = [dy.mb_dynamic_img componentsSeparatedByString:@","];
-//        if (array.count==1) {
-//            return dynamicCellID_Picture;
-//        }else if (array.count==6) {
-//            return dynamicCellID_Pictures_6;
-//        }else if (array.count<=3) {
-//            return dynamicCellID_Pictures;
-//        }else
-//            return dynamicCellID_Pictures_6;
-//    }
-//    if ([dy.mb_format isEqualToString:@"3"]) {
-//        return dynamicCellID_Video;
-//    }
-//    return nil;
-//}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [_inputBar resignFirstResponder];
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [self performSegueWithIdentifier:@"pushDynamicDetailsStoryboardSegue" sender:cell.reuseIdentifier];
+    [self performSegueWithIdentifier:@"pushDynamicDetailsStoryboardSegue" sender:indexPath];
 }
 
-- (void)tableCellBlock:(LsDynamicClickStyle)style Data:(id)model ID:(id)sender
+- (void)tableCellBlock:(LsDynamicClickStyle)style Data:(YdDynamic *)model ID:(id)sender
 {
     switch (style) {
-        case LsDynamicClickStyleUser:
-            [self performSegueWithIdentifier:@"pushUserInfoStoryboardSegue" sender:model];
-            break;
+//        case LsDynamicClickStyleVideo:
+//            NSLog(@"cell__Video__");
+//            //            [self playVoideWith:model.mb_dynamic_voide];
+//            break;
+//        case LsDynamicClickStyleUser:
+//            [self performSegueWithIdentifier:@"pushUserInfoStoryboardSegue" sender:model];
+//            break;
+//        case LsDynamicClickStyleLocationBtn:
+//            NSLog(@"cell__Location__");
+//            break;
+            
         case LsDynamicClickStylePicture1:
             NSLog(@"cell__pic__1");
-//            [self lockChooseImg:1 dynamic:model.mb_dynamic_img ID:sender];
+            [self lockChooseImg:1 dynamic:model.img ID:sender];
             break;
         case LsDynamicClickStylePicture2:
             NSLog(@"cell__pic__2");
-//            [self lockChooseImg:2 dynamic:model.mb_dynamic_img ID:sender];
+            [self lockChooseImg:2 dynamic:model.img ID:sender];
             break;
         case LsDynamicClickStylePicture3:
             NSLog(@"cell__pic__3");
-//            [self lockChooseImg:3 dynamic:model.mb_dynamic_img ID:sender];
-            break;
-        case LsDynamicClickStyleVideo:
-            NSLog(@"cell__Video__");
-//            [self playVoideWith:model.mb_dynamic_voide];
+            [self lockChooseImg:3 dynamic:model.img ID:sender];
             break;
         case LsDynamicClickStyleLeftBtn:
             NSLog(@"cell__btn__left");
-            [_inputBar resignFirstResponder];
-//            [self postDynamicThing:sender Data:model];
+            [self.inputBar resignFirstResponder];
+            [self postDynamicThingData:model nn:[(NSIndexPath *)sender row]];
             break;
         case LsDynamicClickStyleRightBtn:
             NSLog(@"cell__btn__Right");
-            _inputBar.hidden = NO;
-//            _dynamicmdid = model.md_id;
-            [_inputBar becomeFirstResponder];
+            self.inputBar.hidden = NO;
+            _dynamicmdid = model.trendid;
+            [self.inputBar becomeFirstResponder];
             break;
-        case LsDynamicClickStyleLocationBtn:
-            NSLog(@"cell__Location__");
-            break;
-            
         default:
             break;
     }
@@ -177,10 +179,9 @@ NSString *const dynamicCellID_Video = @"LsDynamicTableViewCell_Video";
         }
             break;
         default:{
-            //            LsDynamicTableViewCell_Pictures_6 *view = (LsDynamicTableViewCell_Pictures_6*)sender;
             for (NSString *imgStr in array) {
-//                NSString *imgUrl = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,imgStr];
-                ZLPhotoPickerBrowserPhoto *photo = [ZLPhotoPickerBrowserPhoto photoAnyImageObjWith:@""];
+                NSString *imgUrl = [NSString stringWithFormat:@"%@%@",Yd_Url_base,imgStr];
+                ZLPhotoPickerBrowserPhoto *photo = [ZLPhotoPickerBrowserPhoto photoAnyImageObjWith:imgUrl];
                 [assets addObject:photo];
             }
         }
@@ -200,6 +201,66 @@ NSString *const dynamicCellID_Video = @"LsDynamicTableViewCell_Video";
 }
 
 
+-(void)getDataSource
+{
+    [self showHUDWithHint:nil];
+    [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_dy_trendList Params:@{@"page":[NSString stringWithFormat:@"%ld",self.nowPage]} success:^(id json) {
+        if ([self status:json]) {
+            if (self.nowPage ==1) {
+                _dataSource = [NSMutableArray array];
+            }
+            self.totalPage = [json[@"max"] integerValue];
+            NSArray *array = json[@"data"];
+            for (NSDictionary *dic in array) {
+                NSError *error;
+                YdDynamic *dy = [[YdDynamic alloc]initWithDictionary:dic error:&error];
+                if (!error) {
+                    [_dataSource addObject:dy];
+                }
+            }
+            [_tableView reloadData];
+        }
+        [self hideHud];
+        [_tableView.mj_header endRefreshing];
+        [_tableView.mj_footer endRefreshing];
+    } fail:^(NSError *error) {
+        [self hideHud];
+        [self showHint:@"获取失败"];
+        [_tableView.mj_header endRefreshing];
+        [_tableView.mj_footer endRefreshing];
+    }];
+}
+
+- (void)postCommentInfo:(NSString *)txt
+{
+    if (![self isLogin]) {
+        return;
+    }
+    NSString *uid = k_GET_OBJECT(Yd_user);
+    [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_dy_trendPostComment Params:@{@"tid":_dynamicmdid,@"uid":uid,@"title":txt} success:^(id json) {
+        if ([self status:json]) {
+            [self showHint:@"评论成功"];
+        }
+    
+    } fail:^(NSError *error) {
+        [self showHint:@"评论失败"];
+    }];
+}
+
+- (void)postDynamicThingData:(YdDynamic *)data nn:(NSInteger)row
+{
+    [XCNetworking  XC_GET_JSONDataWithUrl:Yd_Url_dy_del_add_ilike Params:@{@"tid":data.trendid} success:^(id json) {
+        if ([self status:json]) {
+            [self showHint:@"赞"];
+            [_dataSource removeObjectAtIndex:row];
+            data.ilike = [NSString stringWithFormat:@"%d",[data.ilike intValue]+1];
+            [_dataSource insertObject:data atIndex:row];
+        }
+    } fail:^(NSError *error) {
+        
+    }];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -209,7 +270,9 @@ NSString *const dynamicCellID_Video = @"LsDynamicTableViewCell_Video";
     UIViewController *vc = [segue destinationViewController];
     if ([vc isKindOfClass:[LsDynamicDetailsViewController class]]) {
         LsDynamicDetailsViewController *dydetails = [segue destinationViewController];
-        dydetails.cellIdentifier = sender;
+        YdDynamic *yd = _dataSource[[(NSIndexPath*)sender row]];
+        dydetails.cellIdentifier = [self cellIdentifierForModel:yd];
+        dydetails.dynamicInfo = yd;
     }
 }
 

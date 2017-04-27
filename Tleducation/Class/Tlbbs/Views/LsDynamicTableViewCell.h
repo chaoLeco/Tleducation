@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "LsDynamicModel.h"
+#import "YdDynamic.h"
 //#import "LsVideoPlayView.h"
 #import "MCFireworksButton.h"
 typedef NS_ENUM(NSInteger, LsDynamicClickStyle) {
@@ -32,6 +32,8 @@ typedef NS_ENUM(NSInteger, LsDynamicClickStyle) {
 @property (weak, nonatomic) IBOutlet UILabel *lblContent;
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblTing;
+
 @property (weak, nonatomic) IBOutlet UIImageView *imgAvatar;
 @property (weak, nonatomic) IBOutlet MCFireworksButton *leftBtn;
 @property (weak, nonatomic) IBOutlet UIButton *rightBtn;
@@ -39,7 +41,7 @@ typedef void(^cellblock)(LsDynamicClickStyle style , id model ,id info);/**< inf
 @property (strong,nonatomic) cellblock block;
 
 
-@property (strong,nonatomic) id data;
+@property (strong,nonatomic) YdDynamic * data;
 
 - (void)setValueData:(id)model;
 
@@ -67,6 +69,6 @@ typedef void(^cellblock)(LsDynamicClickStyle style , id model ,id info);/**< inf
 //视频
 @interface LsDynamicTableViewCell_Video : LsDynamicTableViewCell_Normal
 @property (weak, nonatomic) IBOutlet UIImageView *imgthum;
-
-
+@property (strong,nonatomic) NSString *videoUrl;
+@property (strong,nonatomic) NSString *thumbUrl;
 @end

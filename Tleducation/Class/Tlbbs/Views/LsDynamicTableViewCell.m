@@ -8,6 +8,7 @@
 
 #import "LsDynamicTableViewCell.h"
 #import "NSString+Emoji.h"
+#import "NSDate+Category.h"
 #pragma mark - 仅文字  -
 @implementation LsDynamicTableViewCell_Normal
 
@@ -25,26 +26,24 @@
     // Configure the view for the selected state
 }
 
-//- (void)setValueData:(LsDynamicModel *)model
-//{
-//    _data = model;
-//    _lblName.text = model.realname;
-//    [_imgAvatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Ls_url_avatar,model.avatar]]
-//                  placeholderImage:[UIImage imageNamed:Ls_preset]];
-//    _lblTime.text = [NSDate formattedTimeFromTimeInterval:[model.mb_addtime longLongValue]];
-//    _lblContent.text = [model.mb_dynamic_info stringByReplacingEmojiCheatCodesWithUnicode];
-//    if (model.mb_jingwei.length<10) {
-//        _locationBtn.hidden = YES;
-//    }else {
-//        [_locationBtn setTitle:model.mb_cityname forState:UIControlStateNormal];
-//        _locationBtn.hidden = NO;
-//    }
+- (void)setValueData:(YdDynamic *)model
+{
+    _data = model;
+    _lblName.text = model.nickname;
+    UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"head_icon_%d.png",arc4random()%3 +1]];
+    [_imgAvatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Yd_Url_base,model.headimg]]
+                  placeholderImage:image];
+    _lblTime.text = [NSDate formattedTimeFromTimeInterval:[model.time longLongValue]];
+    _lblContent.text = [model.title stringByReplacingEmojiCheatCodesWithUnicode];
+    _lblTing.text = [NSString stringWithFormat:@"(%@)",model.ilike];
+    _leftBtn.selected = NO;
+    _lblTing.textColor = [UIColor darkGrayColor];
 //    if ([model.mb_thingstatus isEqualToString:@"1"]) {
 //        _leftBtn.selected = YES;
 //    }else {
 //        _leftBtn.selected = NO;
 //    }
-//}
+}
 
 
 - (IBAction)btnLeftAction:(id)sender {
@@ -52,12 +51,16 @@
     if (!_leftBtn.selected) {
         [_leftBtn popOutsideWithDuration:0.5];
         [_leftBtn animate];
+        _lblTing.textColor = kRGBColor(19, 150, 219);
+        _lblTing.text = [NSString stringWithFormat:@"(%d)",[_data.ilike intValue]+1];
+        if (_block) {
+            _block(LsDynamicClickStyleLeftBtn,_data,_leftBtn);
+        }
+        _leftBtn.selected = YES;
     }else {
+//        _lblTing.textColor = [UIColor darkGrayColor];
     }
-    
-    if (_block) {
-        _block(LsDynamicClickStyleLeftBtn,_data,_leftBtn);
-    }
+
 }
 - (IBAction)btnRightAction:(id)sender {
     //评价
@@ -85,11 +88,11 @@
     // Configure the view for the selected state
 }
 
-- (void)setValueData:(id)model
+- (void)setValueData:(YdDynamic *)model
 {
     [super setValueData:model];
-//    NSString *str = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,model.mb_dynamic_img];
-    [_imgOnly sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+    NSString *str = [NSString stringWithFormat:@"%@%@",Yd_Url_base,model.img];
+    [_imgOnly sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
 }
 
 -(void)clickImgAction
@@ -121,38 +124,38 @@
     // Configure the view for the selected state
 }
 
-- (void)setValueData:(id)model
+- (void)setValueData:(YdDynamic *)model
 {
     _img2.hidden = NO;
     _img3.hidden = NO;
     [super setValueData:model];
-//    NSArray *array = [model.mb_dynamic_img componentsSeparatedByString:@","];
-//    switch (array.count) {
-//        case 0:
-//            NSLog(@"0动态id%@ img_%@",model.md_id,model.mb_dynamic_img);
-//            break;
-//        case 1:
-//            NSLog(@"1动态id%@ img_%@",model.md_id,model.mb_dynamic_img);
-//            break;
-//        case 2:{
-//            NSString *str1 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[0]];
-//            [_img1 sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"6464.jpg"]];
-//            NSString *str2 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[1]];
-//            [_img2 sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"6464.jpg"]];
-//            _img3.hidden = YES;
-//        }
-//            break;
-//        default:
-//            if (array.count>=3) {
-//                NSString *str1 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[0]];
-//                [_img1 sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"6464.jpg"]];
-//                NSString *str2 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[1]];
-//                [_img2 sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"6464.jpg"]];
-//                NSString *str3 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[2]];
-//                [_img3 sd_setImageWithURL:[NSURL URLWithString:str3] placeholderImage:[UIImage imageNamed:@"6464.jpg"]];
-//            }
-//            break;
-//    }
+    NSArray *array = [model.img componentsSeparatedByString:@","];
+    switch (array.count) {
+        case 0:
+            NSLog(@"0动态id%@ img_%@",model.trendid,model.img);
+            break;
+        case 1:
+            NSLog(@"1动态id%@ img_%@",model.trendid,model.img);
+            break;
+        case 2:{
+            NSString *str1 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[0]];
+            [_img1 sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+            NSString *str2 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[1]];
+            [_img2 sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+            _img3.hidden = YES;
+        }
+            break;
+        default:
+            if (array.count>=3) {
+                NSString *str1 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[0]];
+                [_img1 sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+                NSString *str2 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[1]];
+                [_img2 sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+                NSString *str3 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[2]];
+                [_img3 sd_setImageWithURL:[NSURL URLWithString:str3] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+            }
+            break;
+    }
     
 }
 
@@ -198,54 +201,53 @@
     // Configure the view for the selected state
 }
 
-- (void)setValueData:(id)model
+- (void)setValueData:(YdDynamic*)model
 {
     [super setValueData:model];
-//    NSArray *array = [model.mb_dynamic_img componentsSeparatedByString:@","];
-    NSArray *array;
+    NSArray *array = [model.img componentsSeparatedByString:@","];
     self.img3.hidden = NO;
     self.img6.hidden = NO;
     switch (array.count) {
         case 4:{
-//            NSString *str1 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[0]];
-            [self.img1 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
-//            NSString *str2 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[1]];
-            [self.img2 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
-//            NSString *str4 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[2]];
-            [self.img4 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
-//            NSString *str5 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[3]];
-            [self.img5 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+            NSString *str1 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[0]];
+            [self.img1 sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+            NSString *str2 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[1]];
+            [self.img2 sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+            NSString *str4 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[2]];
+            [self.img4 sd_setImageWithURL:[NSURL URLWithString:str4] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+            NSString *str5 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[3]];
+            [self.img5 sd_setImageWithURL:[NSURL URLWithString:str5] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
             self.img3.hidden = YES;
             self.img6.hidden = YES;
         }
             break;
         case 5:{
-//            NSString *str1 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[0]];
-            [self.img1 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
-//            NSString *str2 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[1]];
-            [self.img2 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
-//            NSString *str3 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[2]];
-            [self.img3 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
-//            NSString *str4 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[3]];
-            [self.img4 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
-//            NSString *str5 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[4]];
-            [self.img5 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+            NSString *str1 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[0]];
+            [self.img1 sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+            NSString *str2 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[1]];
+            [self.img2 sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+            NSString *str3 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[2]];
+            [self.img3 sd_setImageWithURL:[NSURL URLWithString:str3] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+            NSString *str4 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[3]];
+            [self.img4 sd_setImageWithURL:[NSURL URLWithString:str4] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+            NSString *str5 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[4]];
+            [self.img5 sd_setImageWithURL:[NSURL URLWithString:str5] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
             self.img6.hidden = YES;
         }
             break;
         case 6:{
-//            NSString *str1 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[0]];
-            [self.img1 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
-//            NSString *str2 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[1]];
-            [self.img2 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
-//            NSString *str3 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[2]];
-            [self.img3 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
-//            NSString *str4 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[3]];
-            [self.img4 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
-//            NSString *str5 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[4]];
-            [self.img5 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
-//            NSString *str6 = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,array[5]];
-            [self.img6 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+            NSString *str1 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[0]];
+            [self.img1 sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+            NSString *str2 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[1]];
+            [self.img2 sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+            NSString *str3 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[2]];
+            [self.img3 sd_setImageWithURL:[NSURL URLWithString:str3] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+            NSString *str4 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[3]];
+            [self.img4 sd_setImageWithURL:[NSURL URLWithString:str4] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+            NSString *str5 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[4]];
+            [self.img5 sd_setImageWithURL:[NSURL URLWithString:str5] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+            NSString *str6 = [NSString stringWithFormat:@"%@%@",Yd_Url_base,array[5]];
+            [self.img6 sd_setImageWithURL:[NSURL URLWithString:str6] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
         }
             break;
         default:
@@ -277,7 +279,8 @@
 
 #pragma mark - 视频  -
 #import "TrVidoePlayView.h"
-
+#import "KZVideoConfig.h"
+#import "UIView+HUD.h"
 @implementation LsDynamicTableViewCell_Video
 
 - (void)awakeFromNib {
@@ -289,52 +292,49 @@
     // Configure the view for the selected state
 }
 
-- (void)setValueData:(id)model
+- (void)setValueData:(YdDynamic *)model
 {
     [super setValueData:model];
-//    NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-//    NSString *file = [NSString stringWithFormat:@"voideCaches/%@",model.mb_dynamic_voide];
-//    NSURL *filePath = [documentsDirectoryURL URLByAppendingPathComponent:model.mb_dynamic_voide];
-
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-//    NSString *voideCachesPath = [[paths lastObject] stringByAppendingString:@"/voideCaches/"];
-//    NSString *filePath = [voideCachesPath stringByAppendingString:model.mb_dynamic_voide];
-//    if (![self fileExistsAtPath:filePath]) {
-//
-//        [_playView showHUDDeterminat];
-//        [XCNetworking XC_Down_UploadWithUrl:[NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicvoide,model.mb_dynamic_voide]
-//                                   FileName:model.mb_dynamic_voide
-//                                   Progress:^(CGFloat Progress) {
-//                                       [_playView HUDProgress:Progress];
-//                                   }
-//                                    success:^(id filePath) {
-//                                        [_playView hideHud];
-//                                        if ([self fileExistsAtPath:[filePath relativePath]]) {
-//                                            _playView.videoPath = [filePath relativePath];
-//
-//                                        }
-//                                    }
-//                                       fail:^(NSError *error) {
-//                                           [_playView hideHud];
-//                                           LogLoc(@"%@ 下载失败",model.mb_dynamic_voide);
-//                                       }];
-//    }else {
-//        _playView.videoPath = filePath;
-//        
-//    }
-//    
-    
+    _videoUrl = model.video;
+    _thumbUrl = [NSString stringWithFormat:@"%@%@",Yd_Url_base,model.thumb];
+    [_imgthum sd_setImageWithURL:[NSURL URLWithString:_thumbUrl] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
 }
 
-- (IBAction)playAction:(id)sender {
-    
-//    [TrVidoePlayView playVideo:@"" Thum:@"" From:_imgthum];
+- (IBAction)playAction:(UIButton *)sender {
+   //  _videoUrl =  /trend_media/20170426151027_73481.mov
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+//    NSString *voideCachesPath = [[paths lastObject] stringByAppendingString:@"/trend_media/"];
+    NSString *videoPath = [[paths lastObject] stringByAppendingString:_videoUrl];
+
+    if (![self fileExistsAtPath:videoPath]) {
+        [_imgthum showHUDDeterminat];
+        sender.hidden = YES;
+        [XCNetworking XC_Down_UploadWithUrl:[NSString stringWithFormat:@"%@%@",Yd_Url_base,_videoUrl]
+                                   FileName:[_videoUrl substringFromIndex:1]
+                                   Progress:^(CGFloat Progress) {
+                                       [_imgthum HUDProgress:Progress];
+                                   }
+                                    success:^(id filePath) {
+                                        [_imgthum hideHud];
+                                        if ([self fileExistsAtPath:[filePath relativePath]]) {
+                                            [TrVidoePlayView playVideo:filePath Thum:_thumbUrl From:_imgthum];
+                                        }
+                                        sender.hidden = NO;
+                                    }
+                                       fail:^(NSError *error) {
+                                           [_imgthum hideHud];
+                                           NSLog(@"%@ 下载失败",_videoUrl);
+                                           sender.hidden = NO;
+                                       }];
+    }else {
+        [TrVidoePlayView playVideo:[NSURL fileURLWithPath:videoPath] Thum:_thumbUrl From:_imgthum];
+    }
 }
 
 - (BOOL)fileExistsAtPath:(NSString *)path
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *voideCachesPath = [[paths lastObject] stringByAppendingString:@"/voideCaches"];
+    NSString *voideCachesPath = [[paths lastObject] stringByAppendingString:@"/trend_media"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL success = [fileManager fileExistsAtPath:voideCachesPath];
     if (!success) {
@@ -344,4 +344,5 @@
         return [fileManager fileExistsAtPath:path];
     }
 }
+
 @end

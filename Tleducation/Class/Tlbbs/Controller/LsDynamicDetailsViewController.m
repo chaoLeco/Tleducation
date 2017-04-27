@@ -9,7 +9,7 @@
 #import "LsDynamicDetailsViewController.h"
 #import "LsDynamicCommentsTableCell.h"
 #import "LsDynamicTableViewCell.h"
-
+#import "YdDynamicComment.h"
 #import "STInputBar.h"
 #import "ZLPhoto.h"
 @interface LsDynamicDetailsViewController ()
@@ -19,7 +19,7 @@
 @property (strong,nonatomic) NSMutableArray *dataSource;
 @property (assign,nonatomic) NSInteger totalpage;
 @property (assign,nonatomic) NSInteger nowpage;
-@property (strong,nonatomic) NSString *passive_member;//被评论或被回复者id
+@property (strong,nonatomic) NSString *cuid;//被评论或被回复者id
 @property (strong,nonatomic) NSArray *thingList;
 
 @end
@@ -31,11 +31,12 @@
     // Do any additional setup after loading the view.
     [self.view addSubview:self.inputBar];
     _nowpage = 1;
-//    [self getDataSource];
+    [self getDataSource];
 //    [self getDynamicThingList];
-//    if ([_dynamicInfo.md_uid isEqualToString:LSHL_GET_OBJECT(@"uid")]) {
-//        _delBtn.hidden = NO;//有删除全部的权限
-//    }else _delBtn.hidden = YES;//只有删除自己评论
+    if ([_dynamicInfo.uid isEqualToString:k_GET_OBJECT(Yd_user)]) {
+        _delBtn.hidden = NO;//有删除全部的权限
+    }else _delBtn.hidden = YES;//只有删除自己评论
+    [self tableRefresh:_tableView];
     
 }
 
@@ -62,7 +63,7 @@
             [weakself.inputBar resignFirstResponder];
             weakself.inputBar.placeHolder = @"发布评论";
             if (text.length>0) {
-//                [weakself postCommentInfo:text];
+                [weakself postCommentInfo:text];
             }
             
         }];
@@ -88,19 +89,18 @@
 //}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    if (_thingList.count>0) {
-//        return _dataSource.count +1;
-//    }else
-//        return _dataSource.count;//cell数量
-    return 10;
+    if (_thingList.count>0) {
+        return _dataSource.count +1;
+    }else
+        return _dataSource.count;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     LsDynamicTableViewCell_Normal *sectionHeaderView = [tableView dequeueReusableCellWithIdentifier:_cellIdentifier];
-//    [sectionHeaderView setValueData:_dynamicInfo];
+    [sectionHeaderView setValueData:_dynamicInfo];
     sectionHeaderView.block =^(LsDynamicClickStyle style , id model ,id sender){
-//        [self tableCellBlock:style Data:model ID:sender];
+        [self tableCellBlock:style Data:model ID:sender];
     };
     return sectionHeaderView;
 }
@@ -116,15 +116,14 @@
             return cell;
         }else {
             LsDynamicCommentsTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LsDynamicCommentsTableCell"];
-//            [cell setValueData:_dataSource[indexPath.row-1]];
+            [cell setValueData:_dataSource[indexPath.row-1]];
             cell.block = ^(NSInteger item ,NSString *coid){[self dealWithComment:item Coid:coid IndexPath:indexPath];};
             cell.isSelfDy = !_delBtn.hidden;
             return cell;
         }
-        
     }else{
         LsDynamicCommentsTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LsDynamicCommentsTableCell"];
-//        [cell setValueData:_dataSource[indexPath.row]];
+        [cell setValueData:_dataSource[indexPath.row]];
         cell.block = ^(NSInteger item ,NSString *coid){[self dealWithComment:item Coid:coid IndexPath:indexPath];};
         cell.isSelfDy = !_delBtn.hidden;
         return cell;
@@ -135,69 +134,64 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    LsDynamicCommentModel *model;
-//    if (_thingList.count>0) {
-//        if (indexPath.row>0) {
-//            model = _dataSource[indexPath.row -1];
-//            [_inputBar resignFirstResponder];
-//            _inputBar.placeHolder = [NSString stringWithFormat: @"回复 %@：",model.active_realname];
-//            _passive_member = model.co_active_member;
-//            [_inputBar becomeFirstResponder];
-//        }
-//    }else{
-//        model = _dataSource[indexPath.row];
-//        [_inputBar resignFirstResponder];
-//        _inputBar.placeHolder = [NSString stringWithFormat: @"回复 %@：",model.active_realname];
-//        _passive_member = model.co_active_member;
-//        [_inputBar becomeFirstResponder];
-//    }
+    YdDynamicComment *model;
+    if (_thingList.count>0) {
+        if (indexPath.row>0) {
+            model = _dataSource[indexPath.row -1];
+            [_inputBar resignFirstResponder];
+            _inputBar.placeHolder = [NSString stringWithFormat: @"回复 %@：",model.nickname];
+            _cuid = model.uid;
+            [_inputBar becomeFirstResponder];
+        }
+    }else{
+        model = _dataSource[indexPath.row];
+        [_inputBar resignFirstResponder];
+        _inputBar.placeHolder = [NSString stringWithFormat: @"回复 %@：",model.nickname];
+        _cuid = model.uid;
+        [_inputBar becomeFirstResponder];
+    }
 }
 
-- (void)tableCellBlock:(LsDynamicClickStyle)style Data:(id)model ID:(id)sender
+- (void)tableCellBlock:(LsDynamicClickStyle)style Data:(YdDynamic *)model ID:(id)sender
 {
     switch (style) {
-        case LsDynamicClickStyleUser:
-            [self performSegueWithIdentifier:@"pushUserInfoStoryboardSegue" sender:model];
-            break;
+//        case LsDynamicClickStyleUser:
+//            [self performSegueWithIdentifier:@"pushUserInfoStoryboardSegue" sender:model];
+//            break;
         case LsDynamicClickStylePicture1:
             NSLog(@"cell__pic__1");
-//            [self lockChooseImg:1 dynamic:model.mb_dynamic_img ID:sender];
+            [self lockChooseImg:1 dynamic:model.img ID:sender];
             break;
         case LsDynamicClickStylePicture2:
             NSLog(@"cell__pic__2");
-//            [self lockChooseImg:2 dynamic:model.mb_dynamic_img ID:sender];
+            [self lockChooseImg:2 dynamic:model.img ID:sender];
             break;
         case LsDynamicClickStylePicture3:
             NSLog(@"cell__pic__3");
-//            [self lockChooseImg:3 dynamic:model.mb_dynamic_img ID:sender];
+            [self lockChooseImg:3 dynamic:model.img ID:sender];
             break;
         case LsDynamicClickStylePicture4:
             NSLog(@"cell__pic__4");
-//            [self lockChooseImg:4 dynamic:model.mb_dynamic_img ID:sender];
+            [self lockChooseImg:4 dynamic:model.img ID:sender];
             break;
         case LsDynamicClickStylePicture5:
             NSLog(@"cell__pic__5");
-//            [self lockChooseImg:5 dynamic:model.mb_dynamic_img ID:sender];
+            [self lockChooseImg:5 dynamic:model.img ID:sender];
             break;
         case LsDynamicClickStylePicture6:
             NSLog(@"cell__pic__6");
-//            [self lockChooseImg:6 dynamic:model.mb_dynamic_img ID:sender];
-            break;
-        case LsDynamicClickStyleVideo: {
-            NSLog(@"cell__Video__");
-//            [self playVoideWith:model.mb_dynamic_voide];
-            }
+            [self lockChooseImg:6 dynamic:model.img ID:sender];
             break;
         case LsDynamicClickStyleLeftBtn:
             NSLog(@"cell__btn__left");
             [_inputBar resignFirstResponder];
-//            [self postDynamicThing:sender];
+            [self postDynamicThingData:model];
             break;
         case LsDynamicClickStyleRightBtn:
             NSLog(@"cell__btn__Right");
             _inputBar.placeHolder = @"发布评论";
             [_inputBar becomeFirstResponder];
-            _passive_member = nil;
+            _cuid = nil;
             break;
         default:
             break;
@@ -218,7 +212,7 @@
             }else [_dataSource removeObjectAtIndex:indexPath.row];
             [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             [_tableView reloadData];
-//            [self dealWithCommentCoid:coid];
+            [self dealWithCommentCoid:coid];
             break;
         default:
             break;
@@ -244,8 +238,8 @@
         default:{
 //            LsDynamicTableViewCell_Pictures_6 *view = (LsDynamicTableViewCell_Pictures_6*)sender;
             for (NSString *imgStr in array) {
-//                NSString *imgUrl = [NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicimg,imgStr];
-                ZLPhotoPickerBrowserPhoto *photo = [ZLPhotoPickerBrowserPhoto photoAnyImageObjWith:@""];
+                NSString *imgUrl = [NSString stringWithFormat:@"%@%@",Yd_Url_base,imgStr];
+                ZLPhotoPickerBrowserPhoto *photo = [ZLPhotoPickerBrowserPhoto photoAnyImageObjWith:imgUrl];
                 [assets addObject:photo];
             }
         }
@@ -268,85 +262,73 @@
 
 }
 
-//- (void)playVoideWith:(NSString *)voidePath
-//
-//{
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-//    NSString *voideCachesPath = [[paths lastObject] stringByAppendingString:@"/voideCaches/"];
-//    NSString *filePath = [voideCachesPath stringByAppendingString:voidePath];
-//    if (![self fileExistsAtPath:filePath]) {
-//        [self showHUDDeterminat];
-//        [XCNetworking XC_Down_UploadWithUrl:[NSString stringWithFormat:@"%@%@%@",Ls_url_avatar_base,Ls_dynamicvoide,voidePath]
-//                                   FileName:voidePath
-//                                   Progress:^(CGFloat Progress) {
-//                                       [self HUDProgress:Progress];
-//                                   }
-//                                    success:^(id filePath) {
-//                                        [self hideHud];
-//                                        PKFullScreenPlayerViewController *viewController = [[PKFullScreenPlayerViewController alloc] initWithVideoPath:filePath previewImage:[UIImage pk_previewImageWithVideoURL:[NSURL fileURLWithPath:filePath]]];
-//                                        [self presentViewController:viewController animated:NO completion:NULL];
-//                                    }
-//                                       fail:^(NSError *error) {
-//                                           [self hideHud];
-//                                           LogLoc(@"%@ 下载失败",voidePath);
-//                                       }];
-//    }else {
-//        PKFullScreenPlayerViewController *viewController = [[PKFullScreenPlayerViewController alloc] initWithVideoPath:filePath previewImage:[UIImage pk_previewImageWithVideoURL:[NSURL fileURLWithPath:filePath]]];
-//        [self presentViewController:viewController animated:NO completion:NULL];
-//    }
-//}
-
-- (BOOL)fileExistsAtPath:(NSString *)path
+- (void)postCommentInfo:(NSString *)txt
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *voideCachesPath = [[paths lastObject] stringByAppendingString:@"/voideCaches"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL success = [fileManager fileExistsAtPath:voideCachesPath];
-    if (!success) {
-        [fileManager createDirectoryAtPath:voideCachesPath withIntermediateDirectories:YES attributes:nil error:nil];
-        return NO;
-    }else {
-        return [fileManager fileExistsAtPath:path];
+    if (![self isLogin]) {
+        return;
     }
+    NSString *uid = k_GET_OBJECT(Yd_user);
+    NSDictionary *dic = @{@"tid":_dynamicInfo.trendid,@"uid":uid,@"title":txt};
+    if (_cuid) {
+        dic = @{@"tid":_dynamicInfo.trendid,@"uid":uid,@"title":txt,@"cuid":_cuid};
+    }
+    [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_dy_trendPostComment Params:dic success:^(id json) {
+        if ([self status:json]) {
+            [self showHint:@"评论成功"];
+            [self getDataSource];
+        }
+        
+    } fail:^(NSError *error) {
+        [self showHint:@"评论失败"];
+    }];
 }
 
-
-/*
 #pragma mark - data -
 -(void)getDataSource
 {
-    NSString *token = LSHL_GET_TOKEN
-    if (token) {
-        [self showHUDWithHint:nil];
-        NSDictionary *dic = @{@"token":token,@"mdid":_dynamicInfo.md_id,@"p":[NSString stringWithFormat:@"%lu",_nowpage]};
-        [XCNetworking XC_GET_JSONDataWithUrl:Ls_GetDynamicCommentList Params:dic success:^(id json) {
-            if ([self status:json[JOSNstatus]]) {
-    
-                if (![json[JOSNinfo][@"pages"] isKindOfClass:[NSNull class]]) {
-                    _totalpage = [json[JOSNinfo][@"pages"] integerValue];
-                    NSArray *array = [NSArray arrayWithArray:json[JOSNinfo][@"list"]];
-                    if (_nowpage ==1) {
-                        _dataSource = [NSMutableArray array];
-                    }
-
-                    for (NSDictionary *dic in array) {
-                        LsDynamicCommentModel *model = [[LsDynamicCommentModel alloc]initWithDictionary:dic error:nil];
-                        [_dataSource addObject:model];
-                    }
-                    
-                    [_tableView reloadData];
+    if (![self isLogin]) {
+        return;
+    }
+    [self showHUDWithHint:nil];
+    [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_dy_trendCommentList Params:@{@"tid":_dynamicInfo.trendid} success:^(id json) {
+        if ([self status:json]) {
+            _dataSource = [NSMutableArray array];
+            NSArray *array = json[@"data"];
+            for (NSDictionary *dic in array) {
+                NSError *error;
+                YdDynamicComment *model = [[YdDynamicComment alloc]initWithDictionary:dic error:&error];
+                if (!error) {
+                    [_dataSource addObject:model];
                 }
             }
-            [_tableView.mj_footer endRefreshing];
-            [self hideHud];
-        } fail:^(NSError *error) {
-            [self hideHud];
-            [_tableView.mj_footer endRefreshing];
-        }];
-    }else [self dealWithToken];
+            [_tableView reloadData];
+        }
+     [self hideHud];
+     } fail:^(NSError *error) {
+         [self hideHud];
+     }];
     
 }
 
+
+-(void)dealWithCommentCoid:(NSString *)coid
+{
+    if (![self isLogin]) {
+        return;
+    }
+    NSString *uid = k_GET_OBJECT(Yd_user);
+    [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_dy_del_comment Params:@{@"uid":uid,@"cid":coid} success:^(id json) {
+        if ([self status:json]) {
+            [self showHint:@"已删除"];
+        }else {
+            [self getDataSource];
+        }
+    } fail:^(NSError *error) {
+        NSLog(@"删除失败");
+        [self getDataSource];
+    }];
+}
+/*
 -(void)getDynamicThingList
 {
     NSString *token = LSHL_GET_TOKEN
@@ -363,69 +345,16 @@
     
 }
 
--(void)postCommentInfo:(NSString *)comment_info
+*/
+- (void)postDynamicThingData:(YdDynamic *)data
 {
-    NSString *info = [comment_info stringByReplacingEmojiUnicodeWithCheatCodes];
-    NSString *token = LSHL_GET_TOKEN
-    if (token) {
-        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-        [dic setObject:token forKey:@"token"];
-        [dic setObject:_dynamicInfo.md_id forKey:@"mdid"];
-        [dic setObject:info forKey:@"comment_info"];
-        if (_passive_member) {
-            [dic setObject:_passive_member forKey:@"passive_member"];
+    [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_dy_del_add_ilike Params:@{@"tid":data.trendid}  success:^(id json) {
+        if ([self status:json]) {
+            [self showHint:@"赞"];
         }
-        [XCNetworking XC_Post_JSONWithUrl:Ls_PutComments parameters:dic success:^(id json) {
-            if ([self status:json[JOSNstatus]]) {
-                
-                [self getDataSource];
-            }
-        } fail:^(NSError *error) {
-            [self showHint:@"评论失败,请检查查网络"];
-        }];
-    }
-    
-}
-
--(void)dealWithCommentCoid:(NSString *)coid
-{
-    NSString *token = LSHL_GET_TOKEN
-    if (token) {
-        [XCNetworking XC_Post_JSONWithUrl:Ls_ByThidDelComment parameters:@{@"token":token,@"coid":coid} success:^(id json) {
-            if ([self status:json[JOSNstatus]]) {
-                [self showHint:json[JOSNinfo]];
-            }else {
-                [self showHint:json[JOSNmessage]];
-                [self getDataSource];
-            }
-        } fail:^(NSError *error) {
-            LogLoc(@"删除失败");
-            [self getDataSource];
-        }];
+    } fail:^(NSError *error) {
         
-    }else [self dealWithToken];
-}
-- (void)postDynamicThing:(UIButton *)sender
-{
-    NSString *status;
-    if (sender.selected) {
-        status = @"2";//取消
-    }else status = @"1";//点赞
-    NSString *token = LSHL_GET_TOKEN
-    if (token) {
-        [XCNetworking XC_Post_JSONWithUrl:Ls_UpdateMemberDynamicThing parameters:@{@"token":token,@"mdid":_dynamicInfo.md_id,@"status":status} success:^(id json) {
-            if ([self status:json[JOSNstatus]]) {
-                [self showHint:json[JOSNinfo]];
-                [self getDynamicThingList];
-                sender.selected = !sender.selected;
-                //更新DB数据
-                _dynamicInfo.mb_thingstatus = status;
-                [LsDynamicFMDB updateInfoWithModel:_dynamicInfo];
-            }
-        } fail:^(NSError *error) {
-            [self showHint:@"操作失败"];
-        }];
-    }else [self dealWithToken];
+    }];
 }
 - (IBAction)backAction:(id)sender {
     
@@ -434,36 +363,35 @@
 
 - (IBAction)delDyAction:(id)sender {
     
-    NSString *token = LSHL_GET_TOKEN
-    if (token) {
-        [XCNetworking XC_Post_JSONWithUrl:Ls_DelDynamicInfo parameters:@{@"token":token,@"mid":_dynamicInfo.md_id} success:^(id json) {
-            if ([self status:json[JOSNstatus]]) {
-                [self showHint:@"删除成功"];
-                [self delWithFile];
-                [self backAction:nil];
-                [LsDynamicFMDB delInfoWithMdid:_dynamicInfo.md_id];
-                
-            }else {
-                [self showHint:json[JOSNmessage]];
-                [self showHint:@"删除失败"];
-            }
-        } fail:^(NSError *error) {
-            LogLoc(@"删除失败");
-            [self showHint:@"删除失败"];
-        }];
+    if (![self isLogin]) {
+        return;
     }
+    NSString *uid = k_GET_OBJECT(Yd_user);
+    [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_dy_del_trend Params:@{@"uid":uid,@"tid":_dynamicInfo.trendid} success:^(id json) {
+        if ([self status:json]) {
+            [self showHint:@"删除成功"];
+            [self delWithFile];
+            [self backAction:nil];
+        }else {
+            [self showHint:@"删除失败"];
+        }
+    } fail:^(NSError *error) {
+        [self showHint:@"删除失败"];
+    }];
 }
 
 -(void)delWithFile
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *voideCachesPath = [[paths lastObject] stringByAppendingString:@"/voideCaches"];
-    NSString *filePath = [voideCachesPath stringByAppendingString:_dynamicInfo.mb_dynamic_voide];
+    NSString *filePath = [[paths lastObject] stringByAppendingString:_dynamicInfo.video];
     NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:filePath]) {
+        return;
+    }
     NSError *error;
     [fileManager removeItemAtPath:filePath error:&error];
     if (error) {
-        LogLoc(@"本地文件删除失败");
+        NSLog(@"本地文件删除失败");
     }
 }
 - (void)didReceiveMemoryWarning {
@@ -471,7 +399,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-*/
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

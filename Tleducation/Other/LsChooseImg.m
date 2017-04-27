@@ -85,7 +85,7 @@
 
     if (_isFull &&_data.count<6) {
         //小于六张 显示添加图片按钮
-        [_data addObject:[UIImage imageNamed:@"Ls_dp_addimg"]];
+        [_data addObject:[UIImage imageNamed:@"add_contact"]];
         _isFull = NO;
     }
     if (_block_removeImg) {

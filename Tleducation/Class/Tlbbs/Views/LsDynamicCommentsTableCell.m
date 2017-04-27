@@ -7,7 +7,8 @@
 //
 
 #import "LsDynamicCommentsTableCell.h"
-
+#import "NSDate+Category.h"
+#import "NSString+Emoji.h"
 @implementation LsDynamicCommentsTableCell
 
 - (void)awakeFromNib {
@@ -22,22 +23,23 @@
     // Configure the view for the selected state
 }
 
-//-(void)setValueData:(LsDynamicCommentModel *)data
-//{
-//    _data = data;
-//    [_lblName setText:data.active_realname];
-//    [_lblTime setText:[NSDate formattedTimeFromTimeInterval:[data.co_addtime longLongValue]]];
-//    NSString *info = [data.co_comment_info stringByReplacingEmojiCheatCodesWithUnicode];
-//    if ([data.co_passive_member isEqualToString:@""] ||
-//        [data.co_passive_member isEqualToString:@"0"]||
-//         !data.co_passive_member) {
-//         [_lblComments setText:info];
-//    }else{
-//         [_lblComments setText:[NSString stringWithFormat:@"回复 %@：%@",data.passive_realname,info]];
-//    }
-//    NSString *str = [NSString stringWithFormat:@"%@%@",Ls_url_avatar_base,data.active_avatar];
-//    [_imgAvatar sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:Ls_preset]];
-//}
+-(void)setValueData:(YdDynamicComment *)data
+{
+    _data = data;
+    [_lblName setText:data.nickname];
+    [_lblTime setText:[NSDate formattedTimeFromTimeInterval:[data.time longLongValue]]];
+    NSString *info = [data.title stringByReplacingEmojiCheatCodesWithUnicode];
+    if ([data.cuid isEqualToString:@""] ||
+        [data.cuid isEqualToString:@"0"]||
+         !data.cuid) {
+         [_lblComments setText:info];
+    }else{
+         [_lblComments setText:[NSString stringWithFormat:@"回复 %@：%@",data.nickname,info]];
+    }
+    UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"head_icon_%d.png",arc4random()%3 +1]];
+    NSString *str = [NSString stringWithFormat:@"%@%@",Yd_Url_base,data.headimg];
+    [_imgAvatar sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:image];
+}
 
 -(void)longTap:(UILongPressGestureRecognizer *)longRecognizer
 {
@@ -47,9 +49,9 @@
         UIMenuItem *copyItem = [[UIMenuItem alloc] initWithTitle:@"复制" action:@selector(copyItemClicked:)];
         UIMenuItem *delItem = [[UIMenuItem alloc] initWithTitle:@"删除" action:@selector(delItemClicked:)];
         NSArray *items;
-//        if (_isSelfDy || [_data.co_active_member isEqualToString:LSHL_GET_OBJECT(@"uid")]) {
-//            items = @[copyItem,delItem];
-//        }else items = @[copyItem];
+        if (_isSelfDy || [_data.cuid isEqualToString:k_GET_OBJECT(Yd_user)]) {
+            items = @[copyItem,delItem];
+        }else items = @[copyItem];
         [menu setMenuItems:items];
         [menu setTargetRect:self.bounds inView:self];
         [menu setMenuVisible:YES animated:YES];
@@ -74,18 +76,20 @@
 
 #pragma mark method
 -(void)delItemClicked:(id)sender{
-    NSLog(@"删除");
+    
     //通知代理
     if (_block) {
-//        _block(1,_data.co_id);
+        NSLog(@"删除");
+        _block(1,_data.commentid);
     }
 }
 -(void)copyItemClicked:(id)sender{
-    NSLog(@"复制");
+    
     if (_block) {
-//        _block(0,_data.co_id);
+        NSLog(@"复制");
+        _block(0,_data.commentid);
     }
-//    [UIPasteboard generalPasteboard].string = [_data.co_comment_info stringByReplacingEmojiCheatCodesWithUnicode];
+    [UIPasteboard generalPasteboard].string = [_data.title stringByReplacingEmojiCheatCodesWithUnicode];
 }
 @end
 

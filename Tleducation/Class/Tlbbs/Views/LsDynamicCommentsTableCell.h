@@ -7,18 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "LsDynamicCommentModel.h"
+#import "YdDynamicComment.h"
 @interface LsDynamicCommentsTableCell : UITableViewCell
 @property (weak ,nonatomic) IBOutlet UIImageView *imgAvatar;
 @property (weak ,nonatomic) IBOutlet UILabel *lblName;
 @property (weak ,nonatomic) IBOutlet UILabel *lblComments;
 @property (weak ,nonatomic) IBOutlet UILabel *lblTime;
-//@property (strong,nonatomic) LsDynamicCommentModel *data;
+@property (strong,nonatomic) YdDynamicComment *data;
 
 @property (assign,nonatomic) BOOL isSelfDy;/**< 是否是自己的发布的动态*/
 typedef void(^MenuBlcok)(NSInteger Index ,NSString *co_id);
 @property (strong,nonatomic) MenuBlcok block;
-//-(void)setValueData:(LsDynamicCommentModel *)data;
+-(void)setValueData:(YdDynamicComment *)data;
 @end
 
 

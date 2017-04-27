@@ -15,6 +15,7 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
     // Drawing code
+//    self.alpha = 0.2f;
     [self moveDown];
     
 }
@@ -47,7 +48,11 @@
 {
     _original = original;
     _formView = [[UIImageView alloc]initWithFrame:_original];
-    _formView.image = [UIImage imageWithContentsOfFile:_thumUrl];
+    if ([_thumUrl rangeOfString:@"http"].location == NSNotFound) {
+        _formView.image = [UIImage imageWithContentsOfFile:_thumUrl];
+    }else
+        [_formView sd_setImageWithURL:[NSURL URLWithString:_thumUrl]];
+    
 //    _formView.contentMode = UIViewContentModeCenter;
     _formView.layer.masksToBounds = YES;
     [self addSubview:_formView];
@@ -68,6 +73,7 @@
 {
     CGFloat hh = CGRectGetWidth(KBounds)*3.0/4;
     [UIView animateWithDuration:0.5 animations:^{
+//        self.alpha = 1;
         _formView.frame = CGRectMake(0, (CGRectGetHeight(KBounds)-hh)/2.0, CGRectGetWidth(KBounds), hh);
     } completion:^(BOOL finished) {
         self.player.hidden = NO;
@@ -80,12 +86,18 @@
     self.player.hidden = YES;
     [UIView animateWithDuration:0.5 animations:^{
         _formView.frame = _original;
+        self.alpha = 0.8f;
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.3 animations:^{
-            self.alpha = 0.2f;
+        [UIView animateWithDuration:0.2 animations:^{
+            self.alpha = 0.1f;
         }  completion:^(BOOL finished) {
             [self removeFromSuperview];
+            self.player = nil;
         }];
     }];
+}
+
+- (void)dealloc {
+    self.player = nil;
 }
 @end

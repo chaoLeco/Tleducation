@@ -15,7 +15,7 @@
 
 #pragma mark - api基础 -
 
-#define Yd_Url_base @"http://192.168.10.250/"
+#define Yd_Url_base @"http://192.168.0.250/"
 
 
 #pragma mark - 文章类 -
@@ -46,5 +46,19 @@
 #define Yd_Url_Login_password Yd_Url_base@"pass_signin"
 //codeMsg登录
 #define Yd_Url_Login_codeMsg Yd_Url_base@"signin"
-//获取短信验证码
+//获取短信验证码74	184	123	
 #define Yd_Url_get_codeMsg Yd_Url_base@"sendcode"
+//动态--发布
+#define Yd_Url_dy_posttrend Yd_Url_base@"post_trend"
+//动态--列表
+#define Yd_Url_dy_trendList Yd_Url_base@"trend"
+//动态--发布评论
+#define Yd_Url_dy_trendPostComment Yd_Url_base@"post_comment"
+//动态--评论列表
+#define Yd_Url_dy_trendCommentList Yd_Url_base@"comment"
+//动态--删除
+#define Yd_Url_dy_del_trend Yd_Url_base@"del_trend"
+//动态--评论删除
+#define Yd_Url_dy_del_comment Yd_Url_base@"del_comment"
+//动态--点赞+1
+#define Yd_Url_dy_del_add_ilike Yd_Url_base@"add_ilike"

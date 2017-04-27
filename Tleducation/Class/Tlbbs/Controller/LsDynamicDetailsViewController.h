@@ -6,9 +6,9 @@
 //  Copyright © 2016年 gansu. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-//#import "LsDynamicModel.h"
-@interface LsDynamicDetailsViewController : UIViewController
+#import "YdDynamic.h"
+#import "YdBasisViewController.h"
+@interface LsDynamicDetailsViewController : YdBasisViewController
 @property(nonatomic ,strong) NSString *cellIdentifier;
-//@property(nonatomic ,assign) LsDynamicModel *dynamicInfo;
+@property(nonatomic ,assign) YdDynamic *dynamicInfo;
 @end

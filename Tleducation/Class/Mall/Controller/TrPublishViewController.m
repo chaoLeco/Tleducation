@@ -68,7 +68,57 @@
 }
 - (IBAction)backAction:(id)sender {
     [_textView resignFirstResponder];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)postDynamic:(id)sender {
+    
+    NSString *userid = k_GET_OBJECT(Yd_user);
+    if (![self isLogin]) {
+        return;
+    }
+    [self showHUDWithHint:nil];
+    if (_chooseImage.count>0) {
+        NSMutableArray *ary = [NSMutableArray array];
+        for (UIImage *img in _chooseImage) {
+            [ary addObject:@{@"picKey":@"file[]",@"picData":UIImagePNGRepresentation(img)}];
+        }
+        NSString *str = _textView.text.length>0?_textView.text:@"分享图片...";
+        [XCNetworking XC_Post_UploadWithUrl:Yd_Url_dy_posttrend Params:@{@"userid":userid,@"title":str} Data_arr:ary success:^(id responseObject) {
+            if ([self status:responseObject]) {
+                NSLog(@"发布成功");
+            }
+            [self hideHud];
+        } fail:^(NSError *error) {
+            NSLog(@"发布失败！");
+            [self hideHud];
+        }];
+    } else
+    if (_videoModel) {
+        NSString *str = _textView.text.length>0?_textView.text:@"分享视频...";
+        [XCNetworking XC_Post_VideoWithUrl:Yd_Url_dy_posttrend Params:@{@"userid":userid,@"title":str} videoPath:_videoModel.videoAbsolutePath success:^(id responseObject) {
+            if ([self status:responseObject]) {
+                NSLog(@"发布成功");
+            }
+            [self hideHud];
+        } fail:^(NSError *error) {
+            NSLog(@"发布失败！");
+            [self hideHud];
+        }];
+    }else{
+        if (_textView.text.length>0) {
+            [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_dy_posttrend Params:@{@"userid":userid,@"title":_textView.text} success:^(id json) {
+                if ([self status:json]) {
+                    NSLog(@"发布成功");
+                }
+                [self hideHud];
+            } fail:^(NSError *error) {
+                NSLog(@"发布失败！");
+                [self hideHud];
+            }];
+        }else
+            [self showHint:@"请输入分享内容"];
+    }
 }
 
 - (void)photoSelectetPostImg

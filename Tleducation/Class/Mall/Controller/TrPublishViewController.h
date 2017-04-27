@@ -6,8 +6,8 @@
 //  Copyright © 2017年 yunduan. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
-@interface TrPublishViewController : UIViewController
+#import "YdBasisViewController.h"
+@interface TrPublishViewController : YdBasisViewController
 
 @end
