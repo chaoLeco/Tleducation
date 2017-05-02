@@ -17,7 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self webLoadRequestUrl:@"https://www.baidu.com"];
+    
+    if (_xinInfo) {
+        self.title = _xinInfo.st;
+        [self webLoadRequestUrl:[NSString stringWithFormat:@"%@%@",Yd_Url_base,_xinInfo.dc]];
+    }
+    
 }
 
 - (IBAction)goback:(UIButton *)sender {

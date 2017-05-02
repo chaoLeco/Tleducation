@@ -40,6 +40,11 @@
     return _timer;
 }
 
+- (IBAction)goback:(UIButton *)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (IBAction)getCodepic:(id)sender {
     
     NSString *url = [NSString stringWithFormat:@"%@/%@",Yd_Url_User_CodePic,[self getAuthcode:4]];

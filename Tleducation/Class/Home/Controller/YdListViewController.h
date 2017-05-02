@@ -7,7 +7,7 @@
 //
 
 #import "YdBasisViewController.h"
-
+#import "YdHomeMenu.h"
 @interface YdListViewController : YdBasisViewController
-
+@property (nonatomic ,strong) YdHomeClass *ch;
 @end

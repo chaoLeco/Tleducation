@@ -237,6 +237,7 @@ NSString *const dynamicCellID_Video = @"LsDynamicTableViewCell_Video";
         return;
     }
     NSString *uid = k_GET_OBJECT(Yd_user);
+    txt = [txt stringByReplacingEmojiUnicodeWithCheatCodes];
     [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_dy_trendPostComment Params:@{@"tid":_dynamicmdid,@"uid":uid,@"title":txt} success:^(id json) {
         if ([self status:json]) {
             [self showHint:@"评论成功"];

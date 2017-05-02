@@ -8,12 +8,15 @@
 
 #import "YdhomeViewController.h"
 #import "YdHomeTableViewCell.h"
+#import "YdListViewController.h"
 #import "SDCycleScrollView.h"
 #import "YdhomeModel.h"
+#import "YdHomeMenu.h"
 
 @interface YdhomeViewController ()<SDCycleScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *banner;
+@property (weak, nonatomic) IBOutlet YdHomeMenu *menuView;
 
 @property (strong,nonatomic) NSMutableArray *datas;
 @property (strong,nonatomic) SDCycleScrollView *cycleScrollView;
@@ -27,8 +30,9 @@
     [_banner addSubview:_cycleScrollView];
     [self tableRefresh:_tableView];
     [self getDataSource];
-//    文化培训、才艺培训、
-//  关于我们
+    _menuView.block =^(YdHomeClass *hc){
+        [self performSegueWithIdentifier:@"pushYdListViewControllerSegue" sender:hc];
+    };
 }
 
 - (SDCycleScrollView *)cycleScrollView
@@ -111,6 +115,7 @@
 
 -(void)getDataSource
 {
+    [_menuView show];
     [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_home_top Params:nil success:^(id json) {
         if ([self status:json]) {
             _datas = [NSMutableArray new];
@@ -133,14 +138,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    UIViewController *vc = [segue destinationViewController];
+    if ([vc isKindOfClass:[YdListViewController class]]) {
+        YdListViewController *listvc = (YdListViewController *)vc;
+        listvc.ch = sender;
+    }
 }
-*/
+
 
 @end

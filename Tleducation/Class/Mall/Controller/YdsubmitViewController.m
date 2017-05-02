@@ -38,6 +38,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)goback:(UIButton *)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (IBAction)submitAction:(id)sender {
     [self.view endEditing:YES];
     if (_txtName.text.length>1) {

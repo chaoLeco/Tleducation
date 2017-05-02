@@ -21,4 +21,12 @@
     // Configure the view for the selected state
 }
 
+- (void)setValueData:(Ydxin *)value
+{
+    [_img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Yd_Url_base,value.epic]] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+    [_lbltitle setText:value.st];
+    [_lblsubtitle setText:value.ds];
+    [_lblpnum setText:[value.dt stringDateWithFormat:@"yyyy-MM-dd HH:mm"]];
+}
+
 @end

@@ -12,6 +12,8 @@
 #import "YdDynamicComment.h"
 #import "STInputBar.h"
 #import "ZLPhoto.h"
+#import "NSString+Emoji.h"
+
 @interface LsDynamicDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *delBtn;
@@ -268,6 +270,7 @@
         return;
     }
     NSString *uid = k_GET_OBJECT(Yd_user);
+    txt = [txt stringByReplacingEmojiUnicodeWithCheatCodes];
     NSDictionary *dic = @{@"tid":_dynamicInfo.trendid,@"uid":uid,@"title":txt};
     if (_cuid) {
         dic = @{@"tid":_dynamicInfo.trendid,@"uid":uid,@"title":txt,@"cuid":_cuid};

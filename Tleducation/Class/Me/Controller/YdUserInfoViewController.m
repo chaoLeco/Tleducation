@@ -142,6 +142,11 @@
     [alert show];
 }
 
+- (IBAction)goback:(UIButton *)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)editorNickname{
     
     UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"修改昵称"                                                                             message: nil                                                                       preferredStyle:UIAlertControllerStyleAlert];

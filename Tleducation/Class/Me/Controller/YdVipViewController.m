@@ -48,6 +48,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)goback:(UIButton *)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (IBAction)delAction:(id)sender {
     if (--_num<1) {
         _num = 1;

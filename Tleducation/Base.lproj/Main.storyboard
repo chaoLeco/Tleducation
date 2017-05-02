@@ -763,7 +763,7 @@
                                         <rect key="frame" x="0.0" y="128" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jjn-s3-oiO" id="M9z-FQ-JSG">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tlme.png" translatesAutoresizingMaskIntoConstraints="NO" id="8Lw-rE-goq">
@@ -954,6 +954,7 @@
                                 <state key="normal" image="tl_back.png"/>
                                 <connections>
                                     <action selector="backAction:" destination="Yoj-ae-OMq" eventType="touchUpInside" id="9Ww-hG-IRf"/>
+                                    <action selector="goback:" destination="ulq-an-s3h" eventType="touchUpInside" id="NK7-oL-061"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -1117,6 +1118,7 @@
                                 <state key="normal" image="tl_back.png"/>
                                 <connections>
                                     <action selector="backAction:" destination="Yoj-ae-OMq" eventType="touchUpInside" id="wL9-CS-cOg"/>
+                                    <action selector="goback:" destination="eSz-AV-w1K" eventType="touchUpInside" id="bmc-Rf-IYa"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -1149,7 +1151,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LsDynamicCommentsTableCell" rowHeight="74" id="Y65-jX-QkD" customClass="LsDynamicCommentsTableCell">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="74"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y65-jX-QkD" id="hWt-iu-P6h">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="73"/>
@@ -1218,7 +1220,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LsDynamicTableViewCell_Pictures" rowHeight="282" id="duh-hZ-GvK" customClass="LsDynamicTableViewCell_Pictures">
-                                        <rect key="frame" x="0.0" y="129.5" width="375" height="282"/>
+                                        <rect key="frame" x="0.0" y="130" width="375" height="282"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="duh-hZ-GvK" id="M4o-AZ-x0e">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="281"/>
@@ -1408,7 +1410,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LsDynamicThingListTableCell" rowHeight="32" id="v5N-tM-OgX" customClass="LsDynamicThingListTableCell">
-                                        <rect key="frame" x="0.0" y="411.5" width="375" height="32"/>
+                                        <rect key="frame" x="0.0" y="412" width="375" height="32"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="v5N-tM-OgX" id="YlL-3N-eAP">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="31"/>
@@ -1683,7 +1685,7 @@
                                         <rect key="frame" x="0.0" y="857.5" width="375" height="331"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JVO-1d-Bhv" id="Yvd-sQ-lkb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="330.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="330"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSO-jG-xe8">
@@ -1811,7 +1813,7 @@
                                         <rect key="frame" x="0.0" y="1188.5" width="375" height="161"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ela-NI-glt" id="oYJ-kJ-GEe">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="160.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sVL-5l-32A">
@@ -1917,10 +1919,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LsDynamicTableViewCell_Video" rowHeight="331" id="y2z-Ux-JHO" customClass="LsDynamicTableViewCell_Video">
-                                        <rect key="frame" x="0.0" y="1349.5" width="375" height="331"/>
+                                        <rect key="frame" x="0.0" y="1350" width="375" height="331"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y2z-Ux-JHO" id="BjA-Eh-LKO">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="330.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="330"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="liO-7b-U7D">
@@ -2216,6 +2218,7 @@
                                 <state key="normal" image="tl_back.png"/>
                                 <connections>
                                     <action selector="backAction:" destination="Yoj-ae-OMq" eventType="touchUpInside" id="xbB-fT-1pL"/>
+                                    <action selector="goback:" destination="rOf-zB-ccD" eventType="touchUpInside" id="zxZ-mI-Qqt"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -2450,6 +2453,7 @@
                                 <state key="normal" image="tl_back.png"/>
                                 <connections>
                                     <action selector="backAction:" destination="Yoj-ae-OMq" eventType="touchUpInside" id="b7t-ss-2f7"/>
+                                    <action selector="goback:" destination="7uj-3S-VQh" eventType="touchUpInside" id="34B-lm-tqg"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -2492,6 +2496,7 @@
                                 <state key="normal" image="tl_back.png"/>
                                 <connections>
                                     <action selector="backAction:" destination="Yoj-ae-OMq" eventType="touchUpInside" id="456-yh-m4J"/>
+                                    <action selector="goback:" destination="Ze4-a9-0bX" eventType="touchUpInside" id="VfO-Qd-xRx"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -2852,6 +2857,7 @@
                                 <state key="normal" image="tl_back.png"/>
                                 <connections>
                                     <action selector="backAction:" destination="Yoj-ae-OMq" eventType="touchUpInside" id="FYg-qd-8JM"/>
+                                    <action selector="goback:" destination="aqL-g2-bl1" eventType="touchUpInside" id="Ylt-s2-wIe"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -3271,6 +3277,7 @@
                                 <state key="normal" image="tl_back.png"/>
                                 <connections>
                                     <action selector="backAction:" destination="Yoj-ae-OMq" eventType="touchUpInside" id="AH1-UG-fmB"/>
+                                    <action selector="goback:" destination="uKR-qv-SyB" eventType="touchUpInside" id="x48-xG-r50"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -3310,7 +3317,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NBP-rX-sNP" id="Vp9-kW-J0q">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QQ20170223.png" translatesAutoresizingMaskIntoConstraints="NO" id="eyU-Gb-Q8k">
@@ -3410,6 +3417,7 @@
                                 <state key="normal" image="tl_back.png"/>
                                 <connections>
                                     <action selector="backAction:" destination="Yoj-ae-OMq" eventType="touchUpInside" id="yDk-jc-8TC"/>
+                                    <action selector="goback:" destination="DVD-dW-SrN" eventType="touchUpInside" id="9KH-Yn-cRM"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -3502,80 +3510,24 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nGX-QS-2bb">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nGX-QS-2bb" customClass="YdHomeMenu">
                                             <rect key="frame" x="0.0" y="140" width="375" height="90"/>
                                             <subviews>
-                                                <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ozz-sY-cyS">
-                                                    <rect key="frame" x="17" y="10" width="60" height="70"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="Q6W-Ot-YCY"/>
-                                                        <constraint firstAttribute="height" constant="70" id="fjt-Cx-zDr"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <inset key="titleEdgeInsets" minX="-50" minY="25" maxX="0.0" maxY="-25"/>
-                                                    <inset key="imageEdgeInsets" minX="5" minY="-15" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" title="才艺培训" image="indexIcon_1.png">
-                                                        <color key="titleColor" red="0.59999999999999998" green="0.0078431372550000003" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="btnAction:" destination="f4e-EX-AOO" eventType="touchUpInside" id="Jd8-xx-xOC"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fF-Tt-we7">
-                                                    <rect key="frame" x="205" y="10" width="60" height="70"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <inset key="titleEdgeInsets" minX="-50" minY="25" maxX="0.0" maxY="-25"/>
-                                                    <inset key="imageEdgeInsets" minX="5" minY="-15" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" title="才艺培训" image="indexIcon_3.png">
-                                                        <color key="titleColor" red="0.59999999999999998" green="0.0078431372550000003" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="btnAction:" destination="f4e-EX-AOO" eventType="touchUpInside" id="Hzp-7u-mS5"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0q6-um-QUM">
-                                                    <rect key="frame" x="298" y="10" width="60" height="70"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <inset key="titleEdgeInsets" minX="-50" minY="25" maxX="0.0" maxY="-25"/>
-                                                    <inset key="imageEdgeInsets" minX="5" minY="-15" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" title="才艺培训" image="indexIcon_4.png">
-                                                        <color key="titleColor" red="0.59999999999999998" green="0.0078431372550000003" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="btnAction:" destination="f4e-EX-AOO" eventType="touchUpInside" id="fYi-dh-Pb6"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ERE-C9-xgF">
-                                                    <rect key="frame" x="111" y="10" width="60" height="70"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <inset key="titleEdgeInsets" minX="-50" minY="25" maxX="0.0" maxY="-25"/>
-                                                    <inset key="imageEdgeInsets" minX="5" minY="-15" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" title="才艺培训" image="indexIcon_2.png">
-                                                        <color key="titleColor" red="0.59999999999999998" green="0.0078431372550000003" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="btnAction:" destination="f4e-EX-AOO" eventType="touchUpInside" id="ASS-Yd-30k"/>
-                                                    </connections>
-                                                </button>
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vye-rh-c94">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                                </scrollView>
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.65000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstItem="0q6-um-QUM" firstAttribute="width" secondItem="Ozz-sY-cyS" secondAttribute="width" id="0Tq-4A-WvI"/>
-                                                <constraint firstItem="9fF-Tt-we7" firstAttribute="centerY" secondItem="nGX-QS-2bb" secondAttribute="centerY" id="4ui-gH-uKo"/>
-                                                <constraint firstItem="ERE-C9-xgF" firstAttribute="width" secondItem="Ozz-sY-cyS" secondAttribute="width" id="JvK-k2-eeE"/>
+                                                <constraint firstAttribute="bottom" secondItem="vye-rh-c94" secondAttribute="bottom" id="5gW-mB-Dnd"/>
+                                                <constraint firstItem="vye-rh-c94" firstAttribute="top" secondItem="nGX-QS-2bb" secondAttribute="top" id="BT1-wS-KJg"/>
                                                 <constraint firstAttribute="height" constant="90" id="MNV-nQ-Tkl"/>
-                                                <constraint firstItem="0q6-um-QUM" firstAttribute="centerY" secondItem="nGX-QS-2bb" secondAttribute="centerY" id="RhJ-DA-vcT"/>
-                                                <constraint firstItem="0q6-um-QUM" firstAttribute="centerX" secondItem="nGX-QS-2bb" secondAttribute="centerX" multiplier="7:4" id="cfb-fD-47y"/>
-                                                <constraint firstItem="ERE-C9-xgF" firstAttribute="centerY" secondItem="nGX-QS-2bb" secondAttribute="centerY" id="fTQ-au-0F4"/>
-                                                <constraint firstItem="9fF-Tt-we7" firstAttribute="width" secondItem="Ozz-sY-cyS" secondAttribute="width" id="hbG-r2-hec"/>
-                                                <constraint firstItem="ERE-C9-xgF" firstAttribute="centerX" secondItem="nGX-QS-2bb" secondAttribute="centerX" multiplier="3:4" id="hbf-W3-MwJ"/>
-                                                <constraint firstItem="9fF-Tt-we7" firstAttribute="height" secondItem="Ozz-sY-cyS" secondAttribute="height" id="kjI-CD-xYn"/>
-                                                <constraint firstItem="9fF-Tt-we7" firstAttribute="centerX" secondItem="nGX-QS-2bb" secondAttribute="centerX" multiplier="5:4" id="lY7-wT-KAP"/>
-                                                <constraint firstItem="ERE-C9-xgF" firstAttribute="height" secondItem="Ozz-sY-cyS" secondAttribute="height" id="qQ7-cM-bKa"/>
-                                                <constraint firstItem="Ozz-sY-cyS" firstAttribute="centerY" secondItem="nGX-QS-2bb" secondAttribute="centerY" id="qw6-Kv-qCY"/>
-                                                <constraint firstItem="0q6-um-QUM" firstAttribute="height" secondItem="Ozz-sY-cyS" secondAttribute="height" id="rLG-LO-A96"/>
-                                                <constraint firstItem="Ozz-sY-cyS" firstAttribute="centerX" secondItem="nGX-QS-2bb" secondAttribute="centerX" multiplier="1:4" id="vUu-WB-OKG"/>
+                                                <constraint firstAttribute="trailing" secondItem="vye-rh-c94" secondAttribute="trailing" id="N4D-Xz-yl8"/>
+                                                <constraint firstItem="vye-rh-c94" firstAttribute="leading" secondItem="nGX-QS-2bb" secondAttribute="leading" id="iEw-Ud-sS0"/>
                                             </constraints>
+                                            <connections>
+                                                <outlet property="scrollView" destination="vye-rh-c94" id="mAJ-3I-BuN"/>
+                                            </connections>
                                         </view>
                                         <button opaque="NO" tag="106" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6OY-9v-COH">
                                             <rect key="frame" x="188" y="240" width="187" height="50"/>
@@ -3776,6 +3728,7 @@
                     <navigationItem key="navigationItem" title="首页" id="CTo-3B-pss"/>
                     <connections>
                         <outlet property="banner" destination="uD7-dI-c6u" id="gZF-zO-XpF"/>
+                        <outlet property="menuView" destination="nGX-QS-2bb" id="v7E-Jw-UzS"/>
                         <outlet property="tableView" destination="ouu-oJ-ZX0" id="rOe-gH-hhB"/>
                         <segue destination="qFy-Tc-rLG" kind="show" identifier="pushYdListViewControllerSegue" id="JuI-gc-6Zo"/>
                         <segue destination="MUx-sf-FyC" kind="show" identifier="pushYdxinViewControllerSegue" id="Ktg-Ud-YZK"/>
@@ -3878,11 +3831,13 @@
                                 <state key="normal" image="tl_back.png"/>
                                 <connections>
                                     <action selector="backAction:" destination="Yoj-ae-OMq" eventType="touchUpInside" id="vuM-Hj-ZgL"/>
+                                    <action selector="goback:" destination="MUx-sf-FyC" eventType="touchUpInside" id="h3D-Ap-DYR"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="tableView" destination="0DG-v4-NQk" id="dix-Fd-cxL"/>
                         <segue destination="o0v-RN-06O" kind="show" identifier="pushYdwebViewControllerSegue" id="PHd-iK-moB"/>
                     </connections>
                 </viewController>
@@ -3992,6 +3947,7 @@
                                 <state key="normal" image="tl_back.png"/>
                                 <connections>
                                     <action selector="backAction:" destination="Yoj-ae-OMq" eventType="touchUpInside" id="Wgm-fs-Nmo"/>
+                                    <action selector="goback:" destination="qFy-Tc-rLG" eventType="touchUpInside" id="HNl-am-5bp"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -4318,6 +4274,7 @@
                                 <state key="normal" image="tl_back.png"/>
                                 <connections>
                                     <action selector="backAction:" destination="Yoj-ae-OMq" eventType="touchUpInside" id="oI0-yC-QF4"/>
+                                    <action selector="goback:" destination="syl-3N-1Ts" eventType="touchUpInside" id="aFl-5L-qNj"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -4372,6 +4329,7 @@
                                 <state key="normal" image="tl_back.png"/>
                                 <connections>
                                     <action selector="backAction:" destination="Yoj-ae-OMq" eventType="touchUpInside" id="NmG-qH-LDj"/>
+                                    <action selector="goback:" destination="o0v-RN-06O" eventType="touchUpInside" id="PZC-c3-e3H"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -4787,7 +4745,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="tl_back.png"/>
                                 <connections>
-                                    <action selector="backAction:" destination="Yoj-ae-OMq" eventType="touchUpInside" id="yQe-RI-TLT"/>
+                                    <action selector="goback:" destination="nHi-LU-6Ir" eventType="touchUpInside" id="5x1-hH-7Ss"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -4963,7 +4921,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="tl_back.png"/>
                                 <connections>
-                                    <action selector="backAction:" destination="Yoj-ae-OMq" eventType="touchUpInside" id="zGz-4r-Z1E"/>
+                                    <action selector="goback:" destination="4bV-im-WZU" eventType="touchUpInside" id="fwv-X9-nom"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -5266,10 +5224,6 @@
         <image name="beijing.png" width="599" height="830"/>
         <image name="fankui.png" width="25" height="23"/>
         <image name="head_icon_1.png" width="44" height="44"/>
-        <image name="indexIcon_1.png" width="49" height="49"/>
-        <image name="indexIcon_2.png" width="49" height="49"/>
-        <image name="indexIcon_3.png" width="49" height="49"/>
-        <image name="indexIcon_4.png" width="49" height="49"/>
         <image name="tabbar_icon0" width="24" height="24"/>
         <image name="tabbar_icon0_h" width="24" height="24"/>
         <image name="tabbar_icon1" width="24" height="24"/>
@@ -5289,15 +5243,15 @@
         <image name="yd_daxue.png" width="40" height="40"/>
         <image name="yd_del.png" width="32" height="32"/>
         <image name="yd_mall.png" width="50" height="50"/>
-        <image name="yd_xin.png" width="40" height="40"/>
+        <image name="yd_xin.png" width="38" height="38"/>
         <image name="ydnopay.png" width="35" height="35"/>
         <image name="zwt_lie.png" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wgQ-zd-crh"/>
-        <segue reference="H9q-WR-iih"/>
-        <segue reference="l8T-F3-DOq"/>
-        <segue reference="LZU-uM-1kf"/>
         <segue reference="bxf-O6-Y4e"/>
+        <segue reference="9pT-om-BJl"/>
+        <segue reference="LZU-uM-1kf"/>
+        <segue reference="H9q-WR-iih"/>
+        <segue reference="wgQ-zd-crh"/>
     </inferredMetricsTieBreakers>
 </document>

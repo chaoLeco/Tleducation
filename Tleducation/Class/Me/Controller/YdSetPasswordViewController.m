@@ -29,6 +29,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)goback:(UIButton *)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (IBAction)getMsgCode:(UIButton *)sender {
     [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_get_codeMsg Params:@{@"usertel":_userPhone} success:^(id json) {
         if ([self status:json]) {

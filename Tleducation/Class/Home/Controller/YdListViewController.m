@@ -16,7 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = _ch.st;
+    [self getDataSource];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,6 +25,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)goback:(UIButton *)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -47,6 +52,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self performSegueWithIdentifier:@"pushYdListDetalisViewControllerSegue" sender:self.navigationItem.title];
+}
+
+- (void)getDataSource
+{
+//    [XCNetworking XC_GET_JSONDataWithUrl:<#(NSString *)#> Params:<#(NSDictionary *)#> success:<#^(id json)success#> fail:<#^(NSError *error)faill#>]
 }
 
 /*

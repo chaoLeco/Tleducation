@@ -7,7 +7,7 @@
 //
 
 #import "YdBasisViewController.h"
-
+#import "Ydxin.h"
 @interface YdwebViewController : YdBasisViewController
-
+@property (strong,nonatomic) Ydxin *xinInfo;
 @end

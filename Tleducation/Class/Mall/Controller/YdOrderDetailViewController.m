@@ -81,6 +81,11 @@
     }];
 }
 
+- (IBAction)goback:(UIButton *)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (IBAction)lookordercode:(UIButton *)sender {
     
     sender.selected = !sender.selected;

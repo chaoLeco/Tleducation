@@ -62,3 +62,7 @@
 #define Yd_Url_dy_del_comment Yd_Url_base@"del_comment"
 //动态--点赞+1
 #define Yd_Url_dy_del_add_ilike Yd_Url_base@"add_ilike"
+//每周之星列表
+#define Yd_Url_home_eekstar Yd_Url_base@"weekstar"
+//每周之星详情h5
+#define Yd_Url_home_estar Yd_Url_base@"star"

@@ -15,6 +15,8 @@
 		DA0053AD1E9F68BB00DE81BF /* YdLoginPwViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0053AC1E9F68BB00DE81BF /* YdLoginPwViewController.m */; };
 		DA0053B01E9F68D800DE81BF /* YdLoginCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0053AF1E9F68D800DE81BF /* YdLoginCodeViewController.m */; };
 		DA0053B21E9F7F8500DE81BF /* tl_xx@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0053B11E9F7F8500DE81BF /* tl_xx@2x.png */; };
+		DA078A7F1EB2D4510053EE84 /* YdHomeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DA078A7E1EB2D4510053EE84 /* YdHomeMenu.m */; };
+		DA078A821EB2EA5B0053EE84 /* Ydxin.m in Sources */ = {isa = PBXBuildFile; fileRef = DA078A811EB2EA5B0053EE84 /* Ydxin.m */; };
 		DA2F34431EA45CEE009B9DEC /* YdSetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2F34421EA45CED009B9DEC /* YdSetPasswordViewController.m */; };
 		DA35211A1E600DC8001FDBD0 /* YdListDetalisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3521191E600DC8001FDBD0 /* YdListDetalisViewController.m */; };
 		DA35211D1E600E36001FDBD0 /* YdListDeatlisTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35211C1E600E36001FDBD0 /* YdListDeatlisTableViewCell.m */; };
@@ -215,6 +217,10 @@
 		DA0053AE1E9F68D800DE81BF /* YdLoginCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdLoginCodeViewController.h; sourceTree = "<group>"; };
 		DA0053AF1E9F68D800DE81BF /* YdLoginCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdLoginCodeViewController.m; sourceTree = "<group>"; };
 		DA0053B11E9F7F8500DE81BF /* tl_xx@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tl_xx@2x.png"; sourceTree = "<group>"; };
+		DA078A7D1EB2D4510053EE84 /* YdHomeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdHomeMenu.h; sourceTree = "<group>"; };
+		DA078A7E1EB2D4510053EE84 /* YdHomeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdHomeMenu.m; sourceTree = "<group>"; };
+		DA078A801EB2EA5B0053EE84 /* Ydxin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ydxin.h; sourceTree = "<group>"; };
+		DA078A811EB2EA5B0053EE84 /* Ydxin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ydxin.m; sourceTree = "<group>"; };
 		DA2F34411EA45CED009B9DEC /* YdSetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdSetPasswordViewController.h; sourceTree = "<group>"; };
 		DA2F34421EA45CED009B9DEC /* YdSetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdSetPasswordViewController.m; sourceTree = "<group>"; };
 		DA3521181E600DC8001FDBD0 /* YdListDetalisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdListDetalisViewController.h; sourceTree = "<group>"; };
@@ -983,6 +989,8 @@
 			children = (
 				DAF6990E1E9DCB2000E5AD93 /* YdhomeModel.h */,
 				DAF6990F1E9DCB2000E5AD93 /* YdhomeModel.m */,
+				DA078A801EB2EA5B0053EE84 /* Ydxin.h */,
+				DA078A811EB2EA5B0053EE84 /* Ydxin.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -998,6 +1006,8 @@
 				DA35211C1E600E36001FDBD0 /* YdListDeatlisTableViewCell.m */,
 				DA85B09A1E5FC46500CA5EDB /* YdxinTableViewCell.h */,
 				DA85B09B1E5FC46500CA5EDB /* YdxinTableViewCell.m */,
+				DA078A7D1EB2D4510053EE84 /* YdHomeMenu.h */,
+				DA078A7E1EB2D4510053EE84 /* YdHomeMenu.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1521,6 +1531,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA078A7F1EB2D4510053EE84 /* YdHomeMenu.m in Sources */,
 				DACB84221EB196B0002718D0 /* YdDynamicComment.m in Sources */,
 				DAF6990C1E9DC53000E5AD93 /* XCNetworking.m in Sources */,
 				DABA5A1D1EB042CD000BDB32 /* UIViewController+DismissKeyboard.m in Sources */,
@@ -1583,6 +1594,7 @@
 				DA605B271EA8A46A00DC59C1 /* DACircularProgressView.m in Sources */,
 				DA605B4C1EA8A74B00DC59C1 /* STInputBar.m in Sources */,
 				DA605B151EA8A46A00DC59C1 /* ZLPhotoPickerBrowserViewController.m in Sources */,
+				DA078A821EB2EA5B0053EE84 /* Ydxin.m in Sources */,
 				DAF2473C1E5EB9DE0092A39B /* YdtlbbsViewController.m in Sources */,
 				DAF36C491E9CCC0A00C23556 /* YdUserInfoTableCell.m in Sources */,
 				DA605B131EA8A46A00DC59C1 /* ZLPhotoRect.m in Sources */,

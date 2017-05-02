@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Ydxin.h"
 @interface YdxinTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *img;
 @property (weak, nonatomic) IBOutlet UILabel *lbltitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblsubtitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblpnum;
+
+- (void)setValueData:(Ydxin *)value;
 @end
