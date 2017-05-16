@@ -54,7 +54,7 @@
 - (void)getUserData
 {
     _lblTitle.text = _product.productname;
-    [_proimg sd_setImageWithURL:[NSURL URLWithString:_product.pimg] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+    [_proimg sd_setImageWithURL:[NSURL URLWithString:[Yd_Url_base stringByAppendingString:_product.pimg]] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
     if ([self isLogin]) {
         NSString *userid = k_GET_OBJECT(Yd_user);
         [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_User_info Params:@{@"userid":userid} success:^(id json) {

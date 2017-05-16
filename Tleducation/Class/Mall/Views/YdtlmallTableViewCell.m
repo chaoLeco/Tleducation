@@ -23,9 +23,9 @@
 
 - (void)showValue:(YdtlmallModel*)value
 {
-    [_img sd_setImageWithURL:[NSURL URLWithString:value.pimg] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
+    [_img sd_setImageWithURL:[NSURL URLWithString:[Yd_Url_base stringByAppendingString:value.pimg]] placeholderImage:[UIImage imageNamed:@"zwt_lie"]];
     _lbltitle.text = value.productname;
-    _lblpnum.text = @"未知";
+    _lblpnum.text = value.sales;
     _lblprice.text = value.price;
     _lblprice_member.text = value.member_price;
 }

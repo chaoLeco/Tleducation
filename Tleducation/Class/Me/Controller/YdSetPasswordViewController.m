@@ -37,7 +37,7 @@
 - (IBAction)getMsgCode:(UIButton *)sender {
     [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_get_codeMsg Params:@{@"usertel":_userPhone} success:^(id json) {
         if ([self status:json]) {
-            NSLog(@"data");
+            NSLog(@"%@", json[@"data"]);
             _seconds = 60;
             sender.hidden = YES;
             _lblTime.text = [NSString stringWithFormat:@"60s"];

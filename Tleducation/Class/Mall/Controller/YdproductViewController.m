@@ -40,14 +40,15 @@
 
 - (void)showInfo
 {
-    self.cycleScrollView.localizationImageNamesGroup = @[@"ad_1.jpg",@"ad_2.jpg",@"ad_3.jpg",@"ad_4.jpg"];
+    self.cycleScrollView.localizationImageNamesGroup = @[@"zwt_lie"];
     if (_product) {
         _lblpice.text = [NSString stringWithFormat:@"￥%@",_product.price];
         _lblpice_mm.text = [NSString stringWithFormat:@"￥%@",_product.member_price];
         _lbltitle.text = _product.productname;
         _lblsubtitle.text = [NSString stringWithFormat:@"地址:%@",_product.storeaddr];
         _lblsubtitle2.text = [NSString stringWithFormat:@"联系电话:%@",_product.storetel];
-        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://baidu.com"]]];
+        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/productdetail/%@",Yd_Url_base,_product.productid]]]];
+        self.cycleScrollView.imageURLStringsGroup = @[[Yd_Url_base stringByAppendingString:_product.pimg]];
     }
 }
 

@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblname;
 @property (weak, nonatomic) IBOutlet UILabel *lblsubtitle;
 @property (weak, nonatomic) IBOutlet UILabel *lbltime;
+
 @end
 
 @interface YdListDeatlisTableSection : UITableViewCell

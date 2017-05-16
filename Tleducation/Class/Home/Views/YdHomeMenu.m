@@ -16,7 +16,7 @@
 
 - (void)show
 {
-    [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_home_class Params:nil success:^(id json) {
+    [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_home_train_type Params:nil success:^(id json) {
         if ([json[@"status"] intValue]==1) {
             NSArray *array = json[@"data"];
             _menus = [NSMutableArray array];
@@ -85,7 +85,7 @@
 
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"_id": @"id"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"_id": @"ttid",@"st":@"ttname"}];
 }
 
 @end

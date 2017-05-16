@@ -22,7 +22,13 @@
         self.title = _xinInfo.st;
         [self webLoadRequestUrl:[NSString stringWithFormat:@"%@%@",Yd_Url_base,_xinInfo.dc]];
     }
-    
+    if (_banner) {
+        self.title = _banner.title;
+        [self webLoadRequestUrl:[NSString stringWithFormat:@"%@%@",Yd_Url_base,_banner.url]];
+    }
+    if (_url) {
+        [self webLoadRequestUrl:_url];
+    }
 }
 
 - (IBAction)goback:(UIButton *)sender {

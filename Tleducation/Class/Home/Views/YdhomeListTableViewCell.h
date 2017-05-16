@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YdtlmallModel.h"
 @interface YdhomeListTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *img;
 @property (weak, nonatomic) IBOutlet UILabel *lbltitle;
 @property (weak, nonatomic) IBOutlet UILabel *lbladdress;
 @property (weak, nonatomic) IBOutlet UILabel *lblpnum;
+
+- (void)setValueData:(YdtlmallModel *)val;
 @end

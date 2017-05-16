@@ -58,7 +58,7 @@
         if ([[_txtCodePic.text lowercaseString] isEqualToString:[_codePic lowercaseString]]) {
             [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_get_codeMsg Params:@{@"usertel":_txtPhone.text} success:^(id json) {
                if ([self status:json]) {
-                   NSLog(@"data");
+                   NSLog(@"%@", json[@"data"]);
                    _seconds = 60;
                    sender.hidden = YES;
                    _lblTime.text = [NSString stringWithFormat:@"60s"];

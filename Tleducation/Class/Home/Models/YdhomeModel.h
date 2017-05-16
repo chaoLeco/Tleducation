@@ -10,20 +10,17 @@
 
 @interface YdhomeModel : JSONModel
 @property (nonatomic, retain) NSString *_id;
-@property (nonatomic, retain) NSString <Optional>*st;
-@property (nonatomic, retain) NSString <Optional>*lv;
-@property (nonatomic, retain) NSString <Optional>*ds;
-@property (nonatomic, retain) NSString <Optional>*pa;
-@property (nonatomic, retain) NSString <Optional>*dc;
-@property (nonatomic, retain) NSString <Optional>*dt;
-@property (nonatomic, retain) NSString <Optional>*ipic;
+@property (nonatomic, retain) NSString <Optional>*title;
+@property (nonatomic, retain) NSString <Optional>*type;
+@property (nonatomic, retain) NSString <Optional>*img;
+@property (nonatomic, retain) NSString <Optional>*sid;
+@property (nonatomic, retain) NSString <Optional>*pora;
+@property (nonatomic, retain) NSString <Optional>*time;
 @end
 
-//"id": "6",                      //文章id
-//"st": "文章二",                 //文章标题
-//"pa": "2",                      //所属类别
-//"lv": "top",                    //文章置顶属性
-//"ds": "",                       //文章概述
-//"dc": "文章二",                 //文章详情
-//"dt": "1491808872",             //发布时间
-//"ipic": ""                      //文章主题图片
+//"id": "1",
+//"title": "每周之星四",			//标题
+//"type": "每周之星",				//类型
+//"img": "/i/20170428101248_88442.png",	//图片
+//"sid": "13",				//源id
+//"pora": "a"					//源数据:a为文章p为商品

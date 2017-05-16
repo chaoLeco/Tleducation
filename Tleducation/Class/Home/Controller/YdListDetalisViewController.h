@@ -7,7 +7,8 @@
 //
 
 #import "YdBasisViewController.h"
-
+#import "YdtlmallModel.h"
 @interface YdListDetalisViewController : YdBasisViewController
-
+@property (strong ,nonatomic) YdtlmallModel *model;
+@property (strong ,nonatomic) NSString *productid;
 @end

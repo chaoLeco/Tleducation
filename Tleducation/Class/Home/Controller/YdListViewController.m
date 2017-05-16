@@ -8,8 +8,12 @@
 
 #import "YdListViewController.h"
 #import "YdhomeListTableViewCell.h"
-@interface YdListViewController ()
+#import "YdListDetalisViewController.h"
+#import "YdtlmallModel.h"
 
+@interface YdListViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *datas;
 @end
 
 @implementation YdListViewController
@@ -18,6 +22,7 @@
     [super viewDidLoad];
     self.title = _ch.st;
     [self getDataSource];
+    [self tableRefresh:_tableView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,7 +41,7 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 10;
+    return _datas.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -45,28 +50,59 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     YdhomeListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YdhomeListTableViewCell"];
+    [cell setValueData:_datas[indexPath.row]];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"pushYdListDetalisViewControllerSegue" sender:self.navigationItem.title];
+    [self performSegueWithIdentifier:@"pushYdListDetalisViewControllerSegue" sender:_datas[indexPath.row]];
 }
 
 - (void)getDataSource
 {
-//    [XCNetworking XC_GET_JSONDataWithUrl:<#(NSString *)#> Params:<#(NSDictionary *)#> success:<#^(id json)success#> fail:<#^(NSError *error)faill#>]
+    if (!_ch) {
+        [self showHint:@"无法获取内容"];
+        return;
+    }
+    [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_home_product_tt Params:@{@"ttid":_ch._id} success:^(id json) {
+        if ([self status:json]) {
+            _datas = [NSMutableArray array];
+            NSArray *ary = json[@"data"];
+            for (NSDictionary *dic in ary) {
+                NSError *error;
+                YdtlmallModel *model = [[YdtlmallModel alloc]initWithDictionary:dic error:&error];
+                if (!error) {
+                    [_datas addObject:model];
+                }
+            }
+            [_tableView reloadData];
+        }
+        [_tableView.mj_header endRefreshing];
+        [_tableView.mj_footer endRefreshing];
+    } fail:^(NSError *error) {
+        [self showHint:@"网络错误"];
+        [_tableView.mj_header endRefreshing];
+        [_tableView.mj_footer endRefreshing];
+    }];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    UIViewController *vc = [segue destinationViewController];
+    if ([vc isKindOfClass:[YdListDetalisViewController class]]) {
+        YdListDetalisViewController *detail = [segue destinationViewController];
+        detail.model = sender;
+    }
 }
-*/
+
 
 @end
