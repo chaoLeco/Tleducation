@@ -28,9 +28,15 @@
     _lblTitle.text = data.productname;
     if ([data.pay_status intValue]==0) {
         _lblpayStatus.text = @"未支付";
-    }else
+    }else{
         _lblpayStatus.text = @"已支付";
+        if([data.order_status intValue]==1){
+           _lblpayStatus.text = @"已取货";
+        }
+    }
+    
     [_imgpr sd_setImageWithURL:[NSURL URLWithString:[Yd_Url_base stringByAppendingString:data.productimg]]];
+    
 }
 
 @end

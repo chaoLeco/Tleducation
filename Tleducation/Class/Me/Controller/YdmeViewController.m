@@ -31,6 +31,12 @@
     [_tableView setTableFooterView:[UIView new]];
     [kNotificationCenter addObserver:self selector:@selector(logout) name:Yd_Notification_logout object:nil];
     [kNotificationCenter addObserver:self selector:@selector(login) name:Yd_Notification_login object:nil];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self login];
 }
 

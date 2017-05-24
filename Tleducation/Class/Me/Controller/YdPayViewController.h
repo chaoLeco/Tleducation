@@ -7,7 +7,9 @@
 //
 
 #import "YdBasisViewController.h"
-
+#import "YdOrderDetail.h"
+#import "Ydvip.h"
 @interface YdPayViewController : YdBasisViewController
-
+@property(nonatomic ,strong) YdOrderDetail *detail;
+@property(nonatomic ,strong) Ydvip *vipOrder;
 @end

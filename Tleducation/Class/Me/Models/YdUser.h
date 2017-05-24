@@ -15,6 +15,7 @@
 @property (nonatomic, retain) NSString <Optional>*nickname;
 @property (nonatomic, retain) NSString <Optional>*headimg;
 @property (nonatomic, retain) NSString <Optional>*vip;
+@property (nonatomic, retain) NSString <Optional>*exp;
 @end
 
 //"userid": "1",                      //用户id
@@ -22,3 +23,5 @@
 //"usertel": "12345678901",           //用户手机号码
 //"nickname": "",                     //用户昵称
 //"headimg": ""                       //用户头像
+//"vip":"0"                           //是否是会员
+//"exp": "0",			//到期时间

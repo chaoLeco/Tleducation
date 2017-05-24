@@ -7,6 +7,7 @@
 //
 
 #import "YdOrderDetailViewController.h"
+#import "YdPayViewController.h"
 #import "YdtlmallModel.h"
 #import <MapKit/MapKit.h>
 @interface YdOrderDetailViewController ()
@@ -22,6 +23,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblpphone;
 @property (weak, nonatomic) IBOutlet UILabel *lblordertime;
 @property (weak, nonatomic) IBOutlet UIButton *ordercode;
+
+@property (weak, nonatomic) IBOutlet UIView *orderStateView;
+@property (weak, nonatomic) IBOutlet UILabel *lblstate;
 @end
 
 @implementation YdOrderDetailViewController
@@ -29,9 +33,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self showInfo];
-    [self getDataSource];
+
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self getDataSource];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -48,9 +57,18 @@
         if ([_detail.pay_status intValue]==0) {
             _lblpayStatus.text = @"未支付";
             [self.view viewWithTag:100].hidden = NO;
+            _orderStateView.hidden = YES;
         }else {
             [self.view viewWithTag:100].hidden = YES;
             _lblpayStatus.text = @"已支付";
+            if ([_detail.order_status intValue]==1) {
+                _lblpayStatus.text = @"订单--已完成";
+                _orderStateView.hidden = YES;
+            }else{
+                _lblstate.text = @"未取货";
+                _orderStateView.hidden = NO;
+            }
+            
         }
         _lblorderid.text = _detail.orderid;
         _lblstoreaddr.text = _detail.storeaddr;
@@ -122,14 +140,39 @@
         [self showHint:@"无法拨打该号码"];
 }
 
-/*
+- (IBAction)pickupAction:(id)sender {
+    //确认收货
+    if (![self isLogin]) {
+        return;
+    }
+    NSString *msg = [NSString stringWithFormat:@"确认已拿到'%@',如有问题请自行联系商家",_detail.productname];
+    WGAlertView *alert = [[WGAlertView alloc] initWithTitle:@"确认收货" message:msg block:^(NSInteger buttonIndex, WGAlertView *alert_) {
+        if (buttonIndex == 0) {
+            [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_User_orderPickup Params:@{@"orderid":_detail.orderid} success:^(id json) {
+                if ([self status:json]) {
+                    _detail.order_status = @"1";
+                    [self showInfo];
+                }
+            } fail:^(NSError *error) {
+                [self showHint:@"确认收货失败"];
+            }];
+        }
+    } cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+    [alert show];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    UIViewController *vc = [segue destinationViewController];
+    if ([vc isKindOfClass:[YdPayViewController class]]) {
+        YdPayViewController *payvc = [segue destinationViewController];
+        payvc.detail = _detail;
+    }
 }
-*/
+
 
 @end

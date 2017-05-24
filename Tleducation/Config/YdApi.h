@@ -30,6 +30,8 @@
 #define Yd_Url_home_banner Yd_Url_base@"/banner"
 //培训类列表
 #define Yd_Url_home_product_tt Yd_Url_base@"/product_list_by_tt"
+//全国大学
+#define Yd_home_university Yd_Url_base@"/university"
 //商品列表
 #define Yd_Url_mall_product Yd_Url_base@"/product"
 //商品详情
@@ -54,6 +56,8 @@
 #define Yd_Url_User_orderlist Yd_Url_base@"/user/orderlist"
 //订单详情
 #define Yd_Url_User_order Yd_Url_base@"/order"
+//确认收货
+#define Yd_Url_User_orderPickup Yd_Url_base@"/pickup"
 //密码登录
 #define Yd_Url_Login_password Yd_Url_base@"/pass_signin"
 //codeMsg登录
@@ -78,3 +82,12 @@
 #define Yd_Url_home_eekstar Yd_Url_base@"/weekstar"
 //每周之星详情h5
 #define Yd_Url_home_estar Yd_Url_base@"/star"
+// 支付宝--支付请求 - 商品
+#define Yd_pay_ali Yd_Url_base@"/alipay"
+//获取vip 费用
+#define Yd_vip_getfee Yd_Url_base@"/getvipfee"
+// 提交购买vip订单
+#define Yd_vip_buyvip Yd_Url_base@"/buyvip"
+// 支付宝--支付请求 - vip购买
+#define Yd_pay_alivip Yd_Url_base@"/buyvipalipay"
+

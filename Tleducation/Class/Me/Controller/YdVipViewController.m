@@ -8,6 +8,7 @@
 
 #import "YdVipViewController.h"
 #import "YdPayViewController.h"
+#import "Ydvip.h"
 @interface YdVipViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *headerPic;
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
@@ -19,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblprice;
 
 @property (assign,nonatomic) NSInteger num;
-
+@property (strong,nonatomic) NSString *price;
 @end
 
 @implementation YdVipViewController
@@ -27,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _num = 1;
+    _price = @"0";
     _lblnum.text = @"1";
     _imgVip.hidden = YES;
     _headerPic.image = [UIImage imageNamed:[NSString stringWithFormat:@"head_icon_%d.png",arc4random()%3 +1]];
@@ -36,11 +38,20 @@
         _lblPhone.text = _info.usertel;
         if ([_info.vip intValue]==1) {
             _imgVip.hidden = NO;
-            _lbltxt.text = @"2017年04月18日12:12\n到期";
-            [self getVipInfo];
-        }
-        _lblprice.text = @"会员15元/月";
+            _lbltxt.text = [NSString stringWithFormat:@"%@\n到期",[NSString stringDateFromString:_info.exp]];
+        }else _lbltxt.text = nil;
+        _lblprice.text = [NSString stringWithFormat:@"会员**元/月"];
     }
+    [XCNetworking XC_GET_JSONDataWithUrl:Yd_vip_getfee Params:@{@"moon":@"1"} success:^(id json) {
+        if ([self status:json]) {
+            _price = json[@"data"][@"fee"];
+            _lblprice.text = [NSString stringWithFormat:@"会员%@元/月",_price];
+            [self delAction:nil];
+        }
+    } fail:^(NSError *error) {
+        [self showHint:@"网络错误"];
+    }];
+    [self delAction:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,29 +67,40 @@
 - (IBAction)delAction:(id)sender {
     if (--_num<1) {
         _num = 1;
-        return;
     }
     _lblnum.text = [NSString stringWithFormat:@"%ld",(long)_num];
-    _lblsum.text = [NSString stringWithFormat:@"￥%ld.00",_num*15];
+    _lblsum.text = [NSString stringWithFormat:@"￥%.2f",_num*[_price floatValue]];
 }
 
 - (IBAction)addAction:(id)sender {
     if (++_num>99) {
         _num = 99;
-        return;
     }
     _lblnum.text = [NSString stringWithFormat:@"%ld",(long)_num];
-    _lblsum.text = [NSString stringWithFormat:@"￥%ld.00",_num*15];
+    _lblsum.text = [NSString stringWithFormat:@"￥%.2f",_num*[_price floatValue]];
 }
 
 - (IBAction)payAction:(id)sender {
     
-    [self performSegueWithIdentifier:@"pushYdPayViewController" sender:nil];
-}
-
-- (void)getVipInfo
-{
+    if ([_price floatValue]==0) {
+        return [self showHint:@"未能获得vip单价"];
+    }
+    if (![self isLogin]) {
+        return;
+    }
+    NSString *userid = k_GET_OBJECT(Yd_user);
     
+    [XCNetworking XC_GET_JSONDataWithUrl:Yd_vip_buyvip Params:@{@"userid":userid,@"moon":[NSString stringWithFormat:@"%ld",_num]} success:^(id json) {
+        if ([self status:json]) {
+            NSError *error;
+            Ydvip *vipOrder = [[Ydvip alloc]initWithDictionary:json[@"data"] error:&error];
+            if (!error) {
+              [self performSegueWithIdentifier:@"pushYdPayViewController" sender:vipOrder];
+            }else [self showHint:@"( ⊙ o ⊙ )！出错了！"];
+        }else [self showHint:@"( ⊙ o ⊙ )！出错了！"];
+    } fail:^(NSError *error) {
+        [self showHint:@"网络错误，请重试"];
+    }];
 }
 
 
@@ -88,6 +110,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    UIViewController *vc = [segue destinationViewController];
+    if ([vc isKindOfClass:[YdPayViewController class]]) {
+        YdPayViewController *ydpay = (YdPayViewController *)[segue destinationViewController];
+        ydpay.vipOrder = sender;
+    }
 }
 
 

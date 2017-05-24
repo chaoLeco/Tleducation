@@ -17,6 +17,19 @@
 		DA0053B21E9F7F8500DE81BF /* tl_xx@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0053B11E9F7F8500DE81BF /* tl_xx@2x.png */; };
 		DA078A7F1EB2D4510053EE84 /* YdHomeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DA078A7E1EB2D4510053EE84 /* YdHomeMenu.m */; };
 		DA078A821EB2EA5B0053EE84 /* Ydxin.m in Sources */ = {isa = PBXBuildFile; fileRef = DA078A811EB2EA5B0053EE84 /* Ydxin.m */; };
+		DA2463D81ECEC622002E8E3D /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DA2463D61ECEC622002E8E3D /* AlipaySDK.bundle */; };
+		DA2463D91ECEC622002E8E3D /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2463D71ECEC622002E8E3D /* AlipaySDK.framework */; };
+		DA2463DB1ECEC6A5002E8E3D /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2463DA1ECEC6A5002E8E3D /* libc++.tbd */; };
+		DA2463DD1ECEC6B0002E8E3D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2463DC1ECEC6B0002E8E3D /* libz.tbd */; };
+		DA2463DF1ECEC6BA002E8E3D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2463DE1ECEC6BA002E8E3D /* SystemConfiguration.framework */; };
+		DA2463E11ECEC6D5002E8E3D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2463E01ECEC6D5002E8E3D /* CoreTelephony.framework */; };
+		DA2463E31ECEC6E0002E8E3D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2463E21ECEC6E0002E8E3D /* QuartzCore.framework */; };
+		DA2463E51ECEC6EA002E8E3D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2463E41ECEC6EA002E8E3D /* CoreText.framework */; };
+		DA2463E71ECEC764002E8E3D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2463E61ECEC764002E8E3D /* CoreGraphics.framework */; };
+		DA2463E91ECEC770002E8E3D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2463E81ECEC770002E8E3D /* UIKit.framework */; };
+		DA2463EB1ECEC79F002E8E3D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2463EA1ECEC79F002E8E3D /* Foundation.framework */; };
+		DA2463ED1ECEC7A8002E8E3D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2463EC1ECEC7A8002E8E3D /* CFNetwork.framework */; };
+		DA2463EF1ECEC7B9002E8E3D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2463EE1ECEC7B9002E8E3D /* CoreMotion.framework */; };
 		DA2F34431EA45CEE009B9DEC /* YdSetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2F34421EA45CED009B9DEC /* YdSetPasswordViewController.m */; };
 		DA35211A1E600DC8001FDBD0 /* YdListDetalisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3521191E600DC8001FDBD0 /* YdListDetalisViewController.m */; };
 		DA35211D1E600E36001FDBD0 /* YdListDeatlisTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35211C1E600E36001FDBD0 /* YdListDeatlisTableViewCell.m */; };
@@ -115,6 +128,9 @@
 		DABA5A1D1EB042CD000BDB32 /* UIViewController+DismissKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = DABA5A191EB042CD000BDB32 /* UIViewController+DismissKeyboard.m */; };
 		DABA5A1F1EB077CC000BDB32 /* localizedString.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DABA5A1E1EB077CC000BDB32 /* localizedString.bundle */; };
 		DABA5A221EB081FB000BDB32 /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DABA5A211EB081FB000BDB32 /* UIView+HUD.m */; };
+		DAC61CAF1ED55984005C45F1 /* Yduniversity.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC61CAE1ED55984005C45F1 /* Yduniversity.m */; };
+		DAC61CB21ED559BD005C45F1 /* YdUniversityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC61CB11ED559BD005C45F1 /* YdUniversityViewController.m */; };
+		DAC61CB51ED559E4005C45F1 /* YdUniversityTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC61CB41ED559E4005C45F1 /* YdUniversityTableCell.m */; };
 		DACB84221EB196B0002718D0 /* YdDynamicComment.m in Sources */ = {isa = PBXBuildFile; fileRef = DACB84211EB196AF002718D0 /* YdDynamicComment.m */; };
 		DACB84241EB1CC25002718D0 /* yd_del@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DACB84231EB1CC25002718D0 /* yd_del@2x.png */; };
 		DACB842B1EB1ED20002718D0 /* Yd_class_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DACB84251EB1ED20002718D0 /* Yd_class_0@2x.png */; };
@@ -175,6 +191,7 @@
 		DAF36C431E9CC41D00C23556 /* tlme@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF36C401E9CC41D00C23556 /* tlme@2x.png */; };
 		DAF36C491E9CCC0A00C23556 /* YdUserInfoTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF36C481E9CCC0A00C23556 /* YdUserInfoTableCell.m */; };
 		DAF36C4C1E9CCC2600C23556 /* YdUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF36C4B1E9CCC2600C23556 /* YdUserInfoViewController.m */; };
+		DAF431C61ED41316006B423F /* Ydvip.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF431C51ED41316006B423F /* Ydvip.m */; };
 		DAF699051E9DC52F00E5AD93 /* NSObject+WGObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF698F41E9DC52F00E5AD93 /* NSObject+WGObject.m */; };
 		DAF699061E9DC52F00E5AD93 /* NSString+WGString.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF698F61E9DC52F00E5AD93 /* NSString+WGString.m */; };
 		DAF699071E9DC52F00E5AD93 /* NSTimer+WGTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF698F81E9DC52F00E5AD93 /* NSTimer+WGTimer.m */; };
@@ -228,6 +245,19 @@
 		DA078A7E1EB2D4510053EE84 /* YdHomeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdHomeMenu.m; sourceTree = "<group>"; };
 		DA078A801EB2EA5B0053EE84 /* Ydxin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ydxin.h; sourceTree = "<group>"; };
 		DA078A811EB2EA5B0053EE84 /* Ydxin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ydxin.m; sourceTree = "<group>"; };
+		DA2463D61ECEC622002E8E3D /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		DA2463D71ECEC622002E8E3D /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		DA2463DA1ECEC6A5002E8E3D /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		DA2463DC1ECEC6B0002E8E3D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		DA2463DE1ECEC6BA002E8E3D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		DA2463E01ECEC6D5002E8E3D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		DA2463E21ECEC6E0002E8E3D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DA2463E41ECEC6EA002E8E3D /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		DA2463E61ECEC764002E8E3D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DA2463E81ECEC770002E8E3D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DA2463EA1ECEC79F002E8E3D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DA2463EC1ECEC7A8002E8E3D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		DA2463EE1ECEC7B9002E8E3D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		DA2F34411EA45CED009B9DEC /* YdSetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdSetPasswordViewController.h; sourceTree = "<group>"; };
 		DA2F34421EA45CED009B9DEC /* YdSetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdSetPasswordViewController.m; sourceTree = "<group>"; };
 		DA3521181E600DC8001FDBD0 /* YdListDetalisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdListDetalisViewController.h; sourceTree = "<group>"; };
@@ -388,6 +418,12 @@
 		DABA5A1E1EB077CC000BDB32 /* localizedString.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = localizedString.bundle; sourceTree = "<group>"; };
 		DABA5A201EB081FB000BDB32 /* UIView+HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HUD.h"; sourceTree = "<group>"; };
 		DABA5A211EB081FB000BDB32 /* UIView+HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HUD.m"; sourceTree = "<group>"; };
+		DAC61CAD1ED55984005C45F1 /* Yduniversity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Yduniversity.h; path = ../Controller/Yduniversity.h; sourceTree = "<group>"; };
+		DAC61CAE1ED55984005C45F1 /* Yduniversity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Yduniversity.m; path = ../Controller/Yduniversity.m; sourceTree = "<group>"; };
+		DAC61CB01ED559BD005C45F1 /* YdUniversityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdUniversityViewController.h; sourceTree = "<group>"; };
+		DAC61CB11ED559BD005C45F1 /* YdUniversityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdUniversityViewController.m; sourceTree = "<group>"; };
+		DAC61CB31ED559E4005C45F1 /* YdUniversityTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdUniversityTableCell.h; sourceTree = "<group>"; };
+		DAC61CB41ED559E4005C45F1 /* YdUniversityTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdUniversityTableCell.m; sourceTree = "<group>"; };
 		DACB84201EB196AF002718D0 /* YdDynamicComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdDynamicComment.h; sourceTree = "<group>"; };
 		DACB84211EB196AF002718D0 /* YdDynamicComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdDynamicComment.m; sourceTree = "<group>"; };
 		DACB84231EB1CC25002718D0 /* yd_del@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yd_del@2x.png"; sourceTree = "<group>"; };
@@ -473,6 +509,8 @@
 		DAF36C481E9CCC0A00C23556 /* YdUserInfoTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdUserInfoTableCell.m; sourceTree = "<group>"; };
 		DAF36C4A1E9CCC2600C23556 /* YdUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdUserInfoViewController.h; sourceTree = "<group>"; };
 		DAF36C4B1E9CCC2600C23556 /* YdUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdUserInfoViewController.m; sourceTree = "<group>"; };
+		DAF431C41ED41316006B423F /* Ydvip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ydvip.h; sourceTree = "<group>"; };
+		DAF431C51ED41316006B423F /* Ydvip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ydvip.m; sourceTree = "<group>"; };
 		DAF698F31E9DC52F00E5AD93 /* NSObject+WGObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+WGObject.h"; sourceTree = "<group>"; };
 		DAF698F41E9DC52F00E5AD93 /* NSObject+WGObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WGObject.m"; sourceTree = "<group>"; };
 		DAF698F51E9DC52F00E5AD93 /* NSString+WGString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+WGString.h"; sourceTree = "<group>"; };
@@ -514,7 +552,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA2463EF1ECEC7B9002E8E3D /* CoreMotion.framework in Frameworks */,
+				DA2463ED1ECEC7A8002E8E3D /* CFNetwork.framework in Frameworks */,
+				DA2463EB1ECEC79F002E8E3D /* Foundation.framework in Frameworks */,
+				DA2463E91ECEC770002E8E3D /* UIKit.framework in Frameworks */,
+				DA2463E71ECEC764002E8E3D /* CoreGraphics.framework in Frameworks */,
+				DA2463E51ECEC6EA002E8E3D /* CoreText.framework in Frameworks */,
+				DA2463E31ECEC6E0002E8E3D /* QuartzCore.framework in Frameworks */,
+				DA2463E11ECEC6D5002E8E3D /* CoreTelephony.framework in Frameworks */,
+				DA2463DF1ECEC6BA002E8E3D /* SystemConfiguration.framework in Frameworks */,
+				DA2463DD1ECEC6B0002E8E3D /* libz.tbd in Frameworks */,
+				DA2463DB1ECEC6A5002E8E3D /* libc++.tbd in Frameworks */,
 				C459BB2B76B4A29324E728B7 /* libPods-Tleducation.a in Frameworks */,
+				DA2463D91ECEC622002E8E3D /* AlipaySDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,9 +588,29 @@
 		7B6D3D789500438C9A86E83C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DA2463EE1ECEC7B9002E8E3D /* CoreMotion.framework */,
+				DA2463EC1ECEC7A8002E8E3D /* CFNetwork.framework */,
+				DA2463EA1ECEC79F002E8E3D /* Foundation.framework */,
+				DA2463E81ECEC770002E8E3D /* UIKit.framework */,
+				DA2463E61ECEC764002E8E3D /* CoreGraphics.framework */,
+				DA2463E41ECEC6EA002E8E3D /* CoreText.framework */,
+				DA2463E21ECEC6E0002E8E3D /* QuartzCore.framework */,
+				DA2463E01ECEC6D5002E8E3D /* CoreTelephony.framework */,
+				DA2463DE1ECEC6BA002E8E3D /* SystemConfiguration.framework */,
+				DA2463DC1ECEC6B0002E8E3D /* libz.tbd */,
+				DA2463DA1ECEC6A5002E8E3D /* libc++.tbd */,
 				ECF98DA6C8177688EC28317A /* libPods-Tleducation.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DA2463D51ECEC622002E8E3D /* alipay */ = {
+			isa = PBXGroup;
+			children = (
+				DA2463D61ECEC622002E8E3D /* AlipaySDK.bundle */,
+				DA2463D71ECEC622002E8E3D /* AlipaySDK.framework */,
+			);
+			path = alipay;
 			sourceTree = "<group>";
 		};
 		DA605ABD1EA89F3300DC59C1 /* MCFireworksButton */ = {
@@ -888,6 +958,7 @@
 		DAF247091E5EB6DB0092A39B /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				DA2463D51ECEC622002E8E3D /* alipay */,
 				DA605B2A1EA8A74B00DC59C1 /* STEmojiKeyboard */,
 				DA605ACC1EA8A46A00DC59C1 /* ZLPhotoLib */,
 				DA605ABD1EA89F3300DC59C1 /* MCFireworksButton */,
@@ -1001,6 +1072,8 @@
 				DAF2476C1E5EDA780092A39B /* YdwebViewController.m */,
 				DA85B0971E5FC44100CA5EDB /* YdxinViewController.h */,
 				DA85B0981E5FC44100CA5EDB /* YdxinViewController.m */,
+				DAC61CB01ED559BD005C45F1 /* YdUniversityViewController.h */,
+				DAC61CB11ED559BD005C45F1 /* YdUniversityViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1008,6 +1081,8 @@
 		DAF2471B1E5EB8580092A39B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DAC61CAD1ED55984005C45F1 /* Yduniversity.h */,
+				DAC61CAE1ED55984005C45F1 /* Yduniversity.m */,
 				DAF6990E1E9DCB2000E5AD93 /* YdhomeModel.h */,
 				DAF6990F1E9DCB2000E5AD93 /* YdhomeModel.m */,
 				DA078A801EB2EA5B0053EE84 /* Ydxin.h */,
@@ -1031,6 +1106,8 @@
 				DA85B09B1E5FC46500CA5EDB /* YdxinTableViewCell.m */,
 				DA078A7D1EB2D4510053EE84 /* YdHomeMenu.h */,
 				DA078A7E1EB2D4510053EE84 /* YdHomeMenu.m */,
+				DAC61CB31ED559E4005C45F1 /* YdUniversityTableCell.h */,
+				DAC61CB41ED559E4005C45F1 /* YdUniversityTableCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1120,6 +1197,8 @@
 			children = (
 				DA5726201EA06B8D009C175A /* YdUser.h */,
 				DA5726211EA06B8D009C175A /* YdUser.m */,
+				DAF431C41ED41316006B423F /* Ydvip.h */,
+				DAF431C51ED41316006B423F /* Ydvip.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1426,6 +1505,7 @@
 				DA605AAD1EA8968600DC59C1 /* Ls_d_pl@3x.png in Resources */,
 				DA0053B21E9F7F8500DE81BF /* tl_xx@2x.png in Resources */,
 				DA86453C1EA5C2A300CD9248 /* LsShopAdd@3x.png in Resources */,
+				DA2463D81ECEC622002E8E3D /* AlipaySDK.bundle in Resources */,
 				DAF699141E9E0E7F00E5AD93 /* zwt_lie@2x.png in Resources */,
 				DA4BFD6E1EA7097500AEEC65 /* ydnopay@2x.png in Resources */,
 				DACB842E1EB1ED20002718D0 /* Yd_class_3@2x.png in Resources */,
@@ -1564,6 +1644,7 @@
 				DA078A7F1EB2D4510053EE84 /* YdHomeMenu.m in Sources */,
 				DACB84221EB196B0002718D0 /* YdDynamicComment.m in Sources */,
 				DAF6990C1E9DC53000E5AD93 /* XCNetworking.m in Sources */,
+				DAC61CB51ED559E4005C45F1 /* YdUniversityTableCell.m in Sources */,
 				DABA5A1D1EB042CD000BDB32 /* UIViewController+DismissKeyboard.m in Sources */,
 				DA605B281EA8A46A00DC59C1 /* DALabeledCircularProgressView.m in Sources */,
 				DAF699061E9DC52F00E5AD93 /* NSString+WGString.m in Sources */,
@@ -1604,6 +1685,7 @@
 				DA5A18FD1EA9BCAD00E18E57 /* TrAboutmeViewController.m in Sources */,
 				DA605B1E1EA8A46A00DC59C1 /* ZLNavigationController.m in Sources */,
 				DA8645411EA5C6E000CD9248 /* YdVipViewController.m in Sources */,
+				DAC61CAF1ED55984005C45F1 /* Yduniversity.m in Sources */,
 				DAF247601E5ECC590092A39B /* YdHomeTableViewCell.m in Sources */,
 				DA35211A1E600DC8001FDBD0 /* YdListDetalisViewController.m in Sources */,
 				DAF36C4C1E9CCC2600C23556 /* YdUserInfoViewController.m in Sources */,
@@ -1625,6 +1707,7 @@
 				DA605B271EA8A46A00DC59C1 /* DACircularProgressView.m in Sources */,
 				DA605B4C1EA8A74B00DC59C1 /* STInputBar.m in Sources */,
 				DA605B151EA8A46A00DC59C1 /* ZLPhotoPickerBrowserViewController.m in Sources */,
+				DAF431C61ED41316006B423F /* Ydvip.m in Sources */,
 				DA078A821EB2EA5B0053EE84 /* Ydxin.m in Sources */,
 				DAF2473C1E5EB9DE0092A39B /* YdtlbbsViewController.m in Sources */,
 				DAF36C491E9CCC0A00C23556 /* YdUserInfoTableCell.m in Sources */,
@@ -1644,6 +1727,7 @@
 				DAF247701E5EE2CB0092A39B /* YdtlmallTableViewCell.m in Sources */,
 				DAF247661E5ED5690092A39B /* YdhomeListTableViewCell.m in Sources */,
 				DA605B161EA8A46A00DC59C1 /* ZLPhotoPickerBrowserPhotoImageView.m in Sources */,
+				DAC61CB21ED559BD005C45F1 /* YdUniversityViewController.m in Sources */,
 				DA605AB31EA89AF000DC59C1 /* LsDynamicTableViewCell.m in Sources */,
 				DABA5A101EB03FAC000BDB32 /* YdDynamic.m in Sources */,
 				DA605AC41EA89F3300DC59C1 /* MCFireworksView.m in Sources */,
@@ -1807,13 +1891,22 @@
 			baseConfigurationReference = D18E1A2DA9619AE40882CC27 /* Pods-Tleducation.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = K7HU34LWAQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Tleducation/Libs/alipay",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Tleducation/Config/YdHeader.h";
 				INFOPLIST_FILE = Tleducation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yunduan.Tleducation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1822,7 +1915,13 @@
 			baseConfigurationReference = 7B395C463B79CA7646274D6E /* Pods-Tleducation.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = K7HU34LWAQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Tleducation/Libs/alipay",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Tleducation/Config/YdHeader.h";
 				INFOPLIST_FILE = Tleducation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1834,7 +1933,6 @@
 					"-l\"FDFullscreenPopGesture\"",
 					"-l\"MBProgressHUD\"",
 					"-l\"MJRefresh\"",
-					"-l\"Mantle\"",
 					"-l\"SDCycleScrollView\"",
 					"-l\"SDWebImage\"",
 					"-l\"UIActivityIndicator-for-SDWebImage\"",
@@ -1855,6 +1953,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yunduan.Tleducation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

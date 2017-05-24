@@ -21,9 +21,13 @@
     [super viewDidLoad];
     [_tableView setTableFooterView:[UITableView new]];
     [self tableRefresh:_tableView];
-    [self getDataSource];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self getDataSource];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
