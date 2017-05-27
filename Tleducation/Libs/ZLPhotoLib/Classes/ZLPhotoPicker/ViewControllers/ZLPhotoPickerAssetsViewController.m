@@ -171,7 +171,7 @@ static NSString *const _identifierCollection = @"toolBarThumbCollectionViewCell"
         
         NSString *heightVfl = @"V:|-0-[collectionView]-0-|";
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:heightVfl options:0 metrics:nil views:views]];
-        
+
     }
     return _collectionView;
 }

@@ -38,7 +38,6 @@
     _tableview.tableFooterView = [UIView new];
     self.cycleScrollView.localizationImageNamesGroup = @[@"zwt_lie"];
     [self updateInfo];
-    [self getDataSource];
 }
 
 - (SDCycleScrollView *)cycleScrollView
@@ -173,7 +172,9 @@
         _lblprice.text = [NSString stringWithFormat:@"￥%@",_model.price];
         _lblprice_m.text = [NSString stringWithFormat:@"￥%@",_model.member_price];
         self.cycleScrollView.imageURLStringsGroup = @[[Yd_Url_base stringByAppendingString:_model.pimg]];
-    }else
+        [self getDataSource];
+    }else{
+        
         [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_mall_productinfo Params:@{@"productid":_productid} success:^(id json) {
             if ([self status:json]) {
                 NSError *error;
@@ -186,11 +187,13 @@
         } fail:^(NSError *error) {
             [self showHint:@"网络错误"];
         }];
+    }
+    
 }
 
 - (void)getDataSource
 {
-    [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_mall_procom Params:@{@"pid":_productid} success:^(id json) {
+    [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_mall_procom Params:@{@"pid":_model.productid} success:^(id json) {
         if ([self status:json]) {
             _datas = [NSMutableArray array];
             NSArray *ary = json[@"data"];

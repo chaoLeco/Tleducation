@@ -44,6 +44,7 @@
     };
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -87,6 +88,7 @@
         [XCNetworking XC_Post_UploadWithUrl:Yd_Url_dy_posttrend Params:@{@"userid":userid,@"title":str} Data_arr:ary success:^(id responseObject) {
             if ([self status:responseObject]) {
                 NSLog(@"发布成功");
+                [self.navigationController popViewControllerAnimated:YES];
             }
             [self hideHud];
         } fail:^(NSError *error) {
@@ -99,6 +101,8 @@
         [XCNetworking XC_Post_VideoWithUrl:Yd_Url_dy_posttrend Params:@{@"userid":userid,@"title":str} videoPath:_videoModel.videoAbsolutePath success:^(id responseObject) {
             if ([self status:responseObject]) {
                 NSLog(@"发布成功");
+                [self removeVideo:nil];
+                [self.navigationController popViewControllerAnimated:YES];
             }
             [self hideHud];
         } fail:^(NSError *error) {
@@ -110,6 +114,7 @@
             [XCNetworking XC_GET_JSONDataWithUrl:Yd_Url_dy_posttrend Params:@{@"userid":userid,@"title":_textView.text} success:^(id json) {
                 if ([self status:json]) {
                     NSLog(@"发布成功");
+                    [self.navigationController popViewControllerAnimated:YES];
                 }
                 [self hideHud];
             } fail:^(NSError *error) {
