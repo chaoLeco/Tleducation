@@ -15,7 +15,7 @@
 
 #pragma mark - api基础 -
 
-#define Yd_Url_base @"http://192.168.0.250"
+#define Yd_Url_base @"http://tlw.cloudqh.cc"
 
 
 #pragma mark - 文章类 -
